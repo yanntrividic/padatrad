@@ -1,0 +1,35 @@
+/* Size and marin for all pages ------------- */
+@page {
+    size: 105mm 148mm;
+    margin-top: 8mm;
+    margin-left: 8mm;
+    margin-right: 8mm;
+    margin-bottom: 10mm;
+    /* marks: crop; */
+}
+
+/* BLANK PAGES -------------------------------- */
+
+@page:blank {
+    @bottom-left { content: none; }
+    @bottom-center { content: none; }
+    @bottom-right { content: none; }
+}
+
+/* COUVERTURE -------------------------------- */
+
+@page:first{
+    @bottom-right { content: none; }
+}
+
+@page:left{
+    @bottom-left {
+        content: counter(page);
+    }
+}
+
+@page:right{
+    @bottom-right {
+        content: counter(page);
+    }
+}

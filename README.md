@@ -1,67 +1,46 @@
-![Build Status](https://gitlab.com/pages/plain-html/badges/master/build.svg)
+# Padatrad
 
----
+Padatrad permet de traduire collectivement des textes et de les éditer depuis un navigateur web.
 
-Example plain HTML site using GitLab Pages.
+## Description
 
-Learn more about GitLab Pages at https://pages.gitlab.io and the official
-documentation https://docs.gitlab.com/ce/user/project/pages/.
+De mars à juin 2023, avec les Éditions Burn~Août, nous avons donné une série d'atelier dans l'objectif de traduire collectivement _The Morale of the Xerox_, un texte de Clara Lobregat Balaguer et de Floriant Cramer. Pour l'occasion de ces ateliers, nous nous sommes dit qu'il serait pratique de pouvoir s'appuyer sur un logiciel qui faciliterait la traduction collective. C'est de là que Padatrad est né !
 
----
+Ce logiciel s'inscrit dans cette lignée de projets reposant sur le paradigme _fetch, convert & publish_. [pad2print](https://gitlab.com/Luuse/pad2print) de Luuse, [Ethertoff](http://osp.kitchen/tools/ethertoff/) ou [Ether2html](http://osp.kitchen/tools/ether2html/) d’Open Source Publishing, [Collabprint](https://gitlab.com/quentinjuhel/collabprint) de Quentin Juhel, [Octomode](https://git.vvvvvvaria.org/varia/octomode) de Varia, [Libreto](https://libreto.net/) de Pierre Tandille, ou encore [Pink my pad!](https://pinkmypad.net/) de Nicolas Sauret[^julienb].
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+Ce projet a pour particularité de s'intéresser à ce paradigme en mettant un accent sur la traduction collective, étant donné qu'il n'existait à notre connaissance aucun logiciel collaboratif et libre facilitant la traduction à plusieurs.
 
-- [GitLab CI](#gitlab-ci)
-- [GitLab User or Group Pages](#gitlab-user-or-group-pages)
-- [Did you fork this project?](#did-you-fork-this-project)
-- [Troubleshooting](#troubleshooting)
+[^julienb]: https://www.accentgrave.net/log/.
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## GitLab CI
+## Visuels
+Ajouter des screenshots.
 
-This project's static Pages are built by [GitLab CI][ci], following the steps
-defined in [`.gitlab-ci.yml`](.gitlab-ci.yml):
+## Installation
+Un serveur HTTP, des serveurs pour héberger ses pads (qui peuvent être n'importe quel Chaton par exemple), et c'est tout, rien d'autre. \
+Pour l'exportation en PDF de votre travail, ça marche mieux avec les navigateurs Chrome ou Chromium. \
+Si vous avez des besoins spécifiques, je peux peut-être vous aider à les mettre en place.
 
-```
-image: alpine:latest
+## Usage
 
-pages:
-  stage: deploy
-  script:
-  - echo 'Nothing to do...'
-  artifacts:
-    paths:
-    - public
-  only:
-  - master
-```
+[Expliquer en quoi c'est pas mal.]
 
-The above example expects to put all your HTML files in the `public/` directory.
+## Roadmap
 
-## GitLab User or Group Pages
+Voir le fichier [TODO.md](https://gitlab.com/yanntrividic/the-moral-of-the-xerox-vf/-/blob/main/TODO.md).
 
-To use this project as your user/group website, you will need one additional
-step: just rename your project to `namespace.gitlab.io`, where `namespace` is
-your `username` or `groupname`. This can be done by navigating to your
-project's **Settings**.
+## Contribuer
 
-Read more about [user/group Pages][userpages] and [project Pages][projpages].
+Si vous voulez contribuer, envoyez-moi un mail, je serais trop content d'avoir de l'aide ! Contact : bonjour@yanntrividic.fr.
 
-## Did you fork this project?
+## Auteur et mentions
 
-If you forked this project for your own use, please go to your project's
-**Settings** and remove the forking relationship, which won't be necessary
-unless you want to contribute back to the upstream project.
+Ce programme a été développé par Yann Trividic pour le compte des Éditions Burn~Août.
 
-## Troubleshooting
+Merci à Julien Taquet et à Nicolas Taffin pour l'aide apportée sur PagedJS. Et surtout, merci à tous les participants et participantes aux ateliers, qui nous ont aidé à penser ce logiciel. 
 
-1. CSS is missing! That means that you have wrongly set up the CSS URL in your
-   HTML files. Have a look at the [index.html] for an example.
+## Licence
+Ce logiciel est distribué sous la licence GNU-GPL3.
 
-[ci]: https://about.gitlab.com/gitlab-ci/
-[index.html]: https://gitlab.com/pages/plain-html/blob/master/public/index.html
-[userpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#user-or-group-pages
-[projpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#project-pages
+## Project status
+Ongoing development.
