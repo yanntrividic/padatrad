@@ -27,9 +27,13 @@ function getListOfBackups() {
     fetchBackups().then(backups => {
         backups.backups.forEach((backup) => {
             const p = document.createElement("p");
-            const date = backup.file_id.substring(18, 20) + "/" + backup.file_id.substring(16, 18) + "/" + backup.file_id.substring(12, 16) ;
+            const dateString = backup.file_id.match(/(\d+)$/)[0]; // gets the trailing digits of the file_id
+
+            let date ;
+            if (dateString.length == 14) date = dateString.substring(6, 8) + "/" + dateString.substring(4, 6) + "/" + dateString.substring(0, 4) ;
+            
             const participants = getParticipants(backup);
-            p.innerHTML = backup.string + " (" + date + ") avec " + participants + "&#x00A0;: ";
+            p.innerHTML = backup.string + (date?" (" + date + ")":"") + " avec " + participants + "&#x00A0;: ";
             document.body.appendChild(p);
 
             const ul = document.createElement("ul");

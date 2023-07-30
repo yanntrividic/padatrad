@@ -14,6 +14,8 @@
 }
 
 [data-id="overlay"] {
+    font-size: clamp(12px, 2vw, 16px);
+    line-height: 1.5em;
     padding:1em .5em;
 }
 
@@ -72,7 +74,7 @@
 }
 
 .expand, .reduce, .close {
-    font-size: 30px;
+    font-size: 20px;
     color: var(--color-border);
     font-weight: bold;
 }
@@ -109,11 +111,9 @@ button {
     [data-id="overlay"], [data-id="miniOverlay"]{
         bottom: 0;
         left: 0;
-        font-size: 40px;
         position: fixed;
         box-sizing:border-box;
         margin: .5em;
-        font-size: 40px;
     }
 
     [data-id="miniOverlay"]{
@@ -125,7 +125,6 @@ button {
         flex-wrap: wrap;
         gap: 5px;
         justify-content: space-around;
-        line-height: 0.9;
     }
 
     [data-id="overlay"] > a, button {
@@ -134,36 +133,10 @@ button {
 
     [data-id="modal"] {
         display: none;
-        font-size: 40px;
         width: 80%;
     }
 
     .reduce, .close, button, [data-id="modal"], [data-id="overlay"], [data-id="miniOverlay"]{
         border-width: 2px;
-    }
-
-    .expand, .reduce, .close{
-        font-size: 50px;
-    }
-}
-
-
-
-@media only screen and (orientation: portrait) and (max-width: 800px),  pagedjs-ignore {
-    [data-id="overlay"], [data-id="modal"] {
-        font-size: 20px;
-    }
-}
-
-
-@media only screen and (orientation: portrait) and (max-width: 1080px),  pagedjs-ignore {
-    [data-id="overlay"], [data-id="modal"] {
-        font-size: 30px;
-    }
-}
-
-@media only screen and (orientation: portrait) and (max-width: 1400px),  pagedjs-ignore {
-    [data-id="overlay"], [data-id="modal"] {
-        font-size: 35px;
     }
 }

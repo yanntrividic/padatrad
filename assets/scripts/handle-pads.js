@@ -24,23 +24,6 @@ window.onload = function(){
     bracketed_spans_plugin(md);
 };
 
-// RESPONSIVE CHATONS PAD SERVERS
-//    https://pads.domainepublic.net/ 62ms
-//    https://ether.immae.eu/ 92ms
-//    https://pad.vvvvvvaria.org/ 109ms
-//    https://pad.liberta.vip/ 154ms
-//    https://pad.kaz.bzh/ 155ms
-//    https://pad.sequanux.org 163MS
-//    https://pad.libretic.fr/ 194ms
-//    https://pad.roflcopter.fr/ 211ms
-//    https://pad.infini.fr/ 215ms
-//    https://pad.devloprog.org/ 217ms
-//    https://pad.evolix.org/ 263ms
-//    https://pad.le-filament.com/ 288ms
-//    https://pad.colibris-outilslibres.org/ 304ms
-//    https://pad.picasoft.net/ 314ms
-//    https://pad.libre-service.eu/ 325ms
-
 /**
  * Replaces the Markdown content of a particular element with HTML code 
  * @param {String} id 
@@ -244,10 +227,18 @@ window.savePads = function(){
         
         const timestamp = date.getFullYear() + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours() ).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2);
         
+        const title  = document.title.normalize('NFKD') // split accented characters into their base characters and diacritical marks
+        .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
+        .trim() // trim leading or trailing whitespace
+        .toLowerCase() // convert to lowercase
+        .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
+        .replace(/\s+/g, '_') // replace spaces with hyphens
+        .replace(/-+/g, '_'); // remove consecutive hyphens
+
         zip.generateAsync({type:"blob"})
         .then(function(content) {
             // Force down of the Zip file
-            saveAs(content, "morale_pads_" + timestamp + ".zip");
+            saveAs(content, title + "_" + timestamp + ".zip");
             //console.log(content);
         });
         

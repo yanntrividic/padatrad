@@ -25,6 +25,24 @@ Si vous avez des besoins spécifiques, je peux peut-être vous aider à les mett
 
 [Expliquer en quoi c'est pas mal.]
 
+<!-- 
+// RESPONSIVE CHATONS PAD SERVERS
+//    https://pads.domainepublic.net/ 62ms
+//    https://ether.immae.eu/ 92ms
+//    https://pad.vvvvvvaria.org/ 109ms
+//    https://pad.liberta.vip/ 154ms
+//    https://pad.kaz.bzh/ 155ms
+//    https://pad.sequanux.org 163MS
+//    https://pad.libretic.fr/ 194ms
+//    https://pad.roflcopter.fr/ 211ms
+//    https://pad.infini.fr/ 215ms
+//    https://pad.devloprog.org/ 217ms
+//    https://pad.evolix.org/ 263ms
+//    https://pad.le-filament.com/ 288ms
+//    https://pad.colibris-outilslibres.org/ 304ms
+//    https://pad.picasoft.net/ 314ms
+//    https://pad.libre-service.eu/ 325ms -->
+
 ## Roadmap
 
 Voir le fichier [TODO.md](https://gitlab.com/yanntrividic/the-moral-of-the-xerox-vf/-/blob/main/TODO.md).
@@ -32,6 +50,7 @@ Voir le fichier [TODO.md](https://gitlab.com/yanntrividic/the-moral-of-the-xerox
 ## Contribuer
 
 Si vous voulez contribuer, envoyez-moi un mail, je serais trop content d'avoir de l'aide ! Contact : bonjour@yanntrividic.fr.
+Nous sommes ouverts à toute forme de contribution à condition qu'elles restent en JS vanille.
 
 ## Auteur et mentions
 

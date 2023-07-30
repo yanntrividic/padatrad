@@ -19,7 +19,7 @@
 /* COUVERTURE -------------------------------- */
 
 @page:first{
-    @bottom-right { content: none; }
+    @bottom-right { }
 }
 
 @page:left{

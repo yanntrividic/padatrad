@@ -84,16 +84,6 @@ class overlay extends Paged.Handler {
             modal.style.display = "block";
         }
 
-        var btnResources = document.createElement("button");
-        btnResources.setAttribute("id", "resourcesButton");
-        btnResources.innerText = "Les Cahiers";
-        btnResources.onclick = function() {
-            window.open(
-                'https://les-cahiers.studiotheatre.fr/morale', // password: "vitry"
-                '_blank' // <- This is what makes it open in a new window.
-              );
-        }
-
         var btnSave = document.createElement("button");
         btnSave.setAttribute("id", "saveButton");
         btnSave.innerText = "Sauvegarder";
@@ -120,17 +110,15 @@ class overlay extends Paged.Handler {
         inputHighlight.checked = true;
         inputHighlight.setAttribute("onclick", "switchHighlight()");
         
-        var labelHighlight = document.createElement("label");
-        labelHighlight.setAttribute("for", "cBoxHighlight");
-        labelHighlight.innerText = "Surlignage ";
-
-        highlight.appendChild(labelHighlight);
-        highlight.appendChild(inputHighlight);
-
-        var percentage = document.createElement("div");
+        
+        var percentage = document.createElement("label");
+        percentage.setAttribute("for", "cBoxHighlight");
         let translationPercentage = `<span style="background-color:var(--color-background-target);">` + (getTranslationPercentage()*100).toFixed(1) + "&#x202F;%" + "</span>";
         let acceptedTranslationPercentage = `<span style="background-color:var(--color-background-accepted);">` + (getAcceptedTranslationPercentage()*100).toFixed(1) + "&#x202F;%" + "</span>";
-        percentage.innerHTML = "Traduction<br />" + acceptedTranslationPercentage + "&#x202F;/&#x202F;" + translationPercentage ;
+        percentage.innerHTML = "Traduction<br />" + acceptedTranslationPercentage + "&#x202F;/&#x202F;" + translationPercentage + "&#x00A0;";
+
+        highlight.appendChild(percentage);
+        highlight.appendChild(inputHighlight);
 
         var modal = document.createElement("div");
         modal.setAttribute("data-id", "modal")
@@ -157,12 +145,10 @@ class overlay extends Paged.Handler {
         }
 
         var text = document.createElement("p");
-        text.innerHTML = `<p>Dans le cadre du cycle d’expositions <i>La&#x00A0;Construction du champ</i> à Vitry, les <a href="https://editionsburnaout.fr/">Éditions Burn~Août</a> et le traducteur Yann Trividic vous proposent une série d’ateliers ayant pour but la traduction collective d’une publication de Clara Lobregat Balaguer et Florian Cramer, <i>The&#x00A0;Moral of the&#x00A0;Xerox</i>.</p><p>Cette page web est un outil conçu pour traduire collectivement et simplement ce texte, tout en l’éditant et en le mettant en page. Le texte est en <span style="background-color:var(--color-background-accepted);">vert</span> lorsque la traduction a été acceptée, en <span style="background-color:var(--color-background-target);">jaune</span> quand elle n’est encore qu’à l’état d’ébauche, et en <span style="background-color:var(--color-background-alt);">rouge</span> quand des variantes existent. Cliquez sur les liens du menu pour modifier son contenu&#x202F;!</p><p>Les ateliers ont lieu un samedi sur deux à la Galerie municipale Jean-Collet, à Vitry, du 25&#x00A0;mars au 10&#x00A0;juin 2023. Les inscriptions se font par mail à l’adresse suivante&#x00A0;: <a href="mailto:eva.colpacci@mairie-vitry94.fr">eva.colpacci@mairie-vitry94.fr</a>.</p><p>Plus d’infos <a href="tract_ateliers_trad_vitry.pdf">ici</a>, code source <a href="https://gitlab.com/yanntrividic/the-moral-of-the-xerox-vf">là</a> et PDF de la version originale <a href="the_moral_of_the_xerox_balaguer_cramer.pdf">ici</a>.`;
+        text.innerHTML = config.infoText;
         modalContent.appendChild(text);
 
         pannel.appendChild(btnInfo);
-        pannel.appendChild(document.createElement("br"));
-        pannel.appendChild(btnResources);
         pannel.appendChild(document.createElement("br"));
         pannel.appendChild(btnSave);
         pannel.appendChild(document.createElement("br"));
@@ -170,8 +156,6 @@ class overlay extends Paged.Handler {
         pannel.appendChild(document.createElement("br"));
         pannel.appendChild(document.createElement("br"));
         pannel.appendChild(highlight);
-        pannel.appendChild(document.createElement("br"));
-        pannel.appendChild(percentage);
         pannel.appendChild(document.createElement("br"));
         return modal;
     }

@@ -1,11 +1,21 @@
 {
     "backups": 
     [{
-        "string": "Atelier 1",
-        "file_id": "backup_20230325205037",
+        "string": "Test 1",
+        "file_id": "padatrad_20230730131035",
         "participants": [
             "Titi",
             "Toto",
             "Tutu"
-    ]}]
+        ]
+    },
+    {
+        "string": "Test 2",
+        "file_id": "padatrad_20230730155103",
+        "participants": [
+            "Tata",
+            "Titi",
+            "Tutu"
+        ]
+    }]
 }

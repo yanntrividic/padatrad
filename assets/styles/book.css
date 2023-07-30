@@ -10,9 +10,6 @@
 /* css for the layouts */
 @import "modules/layout.css";
 
-/* ad hoc pages tweaks, based on id's */
-@import "modules/tweaks.css";
-
 /* paged js interface and screen view css */
 @import "interface.css";
 @import "translation.css";
