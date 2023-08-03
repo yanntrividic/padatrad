@@ -2,7 +2,7 @@
  * Everything in there is here to be edited, please make yourself at home!
  */
 
-const config = {
+export default {
     title: "Padatrad", // The name of your project
 
     // The text that will be displayed in the infobox

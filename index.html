@@ -7,14 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="assets/styles/book.css" rel="stylesheet">
         <link href="favicon.ico" rel="icon" type="image/x-icon" />
-        <script src="assets/scripts/dependencies/jquery.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-        <script src="assets/scripts/dependencies/markdown-it.js"></script>
-        <script src="assets/scripts/dependencies/markdown-it-attrs.js"></script>
-        <script src="assets/scripts/dependencies/markdown-it-bracketed-spans.js"></script>
-        <script src="assets/scripts/dependencies/jszip.js"></script>
-        <script src="assets/scripts/dependencies/FileSaver.min.js"></script>
-        <script src="config.js"></script>
-        <script src="assets/scripts/meta.js"></script>
+        <script type="module" src="assets/scripts/main.js"></script>
         <!-- 
         Éditions Burn~Août, Padatrad
         Dépôt du projet : https://gitlab.com/editionsburnaout/padatrad
@@ -27,28 +20,5 @@
         -->
     </head>
     <body lang="fr">
-        <script src="assets/scripts/handle-pads.js"></script>
-        <script src="assets/scripts/regex-typo.js"></script>
-        <script>
-            generateHtmlFromPads(config.padsUrl);
-            document.body.style.display = "none";
-            window.PagedConfig = {
-                before: () => {
-                    return new Promise((resolve, reject) => {
-                        setTimeout(() => { resolve() }, 1500);
-                    })
-                },
-                after: (flow) => { 
-                    regexTypo();
-                    document.body.style.display = 'block';
-                    window.moveFast();
-                    console.log("after", flow) },
-            };
-            document.body.style.display = 'block';
-        </script>
-        <script src="assets/scripts/dependencies/paged.polyfill.js"></script>
-        <script src="assets/scripts/hooks/replace-translation.js"></script>
-        <script src="assets/scripts/hooks/overlay.js"></script>
-        <script src="assets/scripts/hooks/reload-in-place.js"></script>
     </body>
 </html>
