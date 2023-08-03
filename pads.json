@@ -1,21 +1,18 @@
+[{
+    "id": "section1",
+    "string": "Section 1",
+    "type": "md",
+    "url": "https://pads.domainepublic.net/p/padatrad1"
+},
 {
-    "pads": 
-    [{
-        "id": "section1",
-        "string": "Section 1",
-        "type": "md",
-        "url": "https://pads.domainepublic.net/p/padatrad1"
-    },
-    {
-        "id": "section2",
-        "string": "Section 2",
-        "type": "md",
-        "url": "https://ether.immae.eu/p/padatrad2"
-    },
-    {
-        "id": "css",
-        "string": "Style",
-        "type": "css",
-        "url": "https://pad.kaz.bzh/p/padatradstyle"
-    }]
-}
+    "id": "section2",
+    "string": "Section 2",
+    "type": "md",
+    "url": "https://ether.immae.eu/p/padatrad2"
+},
+{
+    "id": "css",
+    "string": "Style",
+    "type": "css",
+    "url": "https://pad.kaz.bzh/p/padatradstyle"
+}]

@@ -6,29 +6,14 @@
  * @license GPLv3
  */
 
-let padsUrl;
-async function fetchPads() {
-    const response = await fetch(padsUrl);
-    const pads = await response.json();
-    return pads;
-}
-
 const data_suffix = "_data";
 const export_url_suffix = "/export/txt";
-
-console.log("handle-pads is working...");
-var md = null;
-window.onload = function(){
-    md = window.markdownit({html: true});
-    md.use(markdownItAttrs);
-    bracketed_spans_plugin(md);
-};
 
 /**
  * Replaces the Markdown content of a particular element with HTML code 
  * @param {String} id 
  */
-function run(id) {
+function run(id, md) {
     var text = document.getElementById(id + data_suffix).innerHTML,
     target = document.getElementById(id),
     html = md.render(text);
@@ -64,17 +49,15 @@ function run(id) {
     })
 }
 
-function loadPads(pads){
-    pads.pads.forEach((pad) => {
-        if(pad.type == "md") {
-            insertMdTags(pad);
-        } else if(pad.type == "css") {
-            insertCssTag(pad);
-        } else {
-            console.error(`${pad.id} is neither Markdown nor CSS.`);
-        }
-    });
-    console.log("pads loaded.");
+export function insertTag(pad){
+    if(pad.type == "md") {
+        insertMdTags(pad);
+    } else if(pad.type == "css") {
+        insertCssTag(pad);
+    } else {
+        console.error(`${pad.id} is neither Markdown nor CSS.`);
+    }
+    console.log(`${pad.id} pad loaded.`);
 }
 
 
@@ -146,21 +129,16 @@ function insertCssTag(pad) {
 /**
  * Processes the data elements to turn them into HTML code.
  */
-function putPadsDataHtml(){
-    fetchPads().then(pads => {
-        pads.pads.forEach((pad) => {
-            $(document).ready(function(){
-                var formated = '#' + pad.id + '_data';
-                let link = document.getElementById(formated);
-                console.log(formated, link);
-                $(formated).load($(formated).attr("data-md"), function(){
-                    run(pad.id);
-                    $(formated).remove();
-                });
-            });
+export async function putPadDataHtml(pad, md){
+    return $(document).ready(function(){
+        var formated = pad.id + '_data';
+        let link = document.getElementById(formated);
+        console.log(formated, link);
+        $(formated).load($(formated).attr("data-md"), function(){
+            run(pad.id, md);
+            $(formated).remove();
         });
     });
-    console.log("All the Markdown content has been converted.");
 }
 
 /**
