@@ -1,21 +1,18 @@
+[{
+    "string": "Test 1",
+    "file_id": "padatrad_20230730131035",
+    "participants": [
+        "Titi",
+        "Toto",
+        "Tutu"
+    ]
+},
 {
-    "backups": 
-    [{
-        "string": "Test 1",
-        "file_id": "padatrad_20230730131035",
-        "participants": [
-            "Titi",
-            "Toto",
-            "Tutu"
-        ]
-    },
-    {
-        "string": "Test 2",
-        "file_id": "padatrad_20230730155103",
-        "participants": [
-            "Tata",
-            "Titi",
-            "Tutu"
-        ]
-    }]
-}
+    "string": "Test 2",
+    "file_id": "padatrad_20230730155103",
+    "participants": [
+        "Tata",
+        "Titi",
+        "Tutu"
+    ]
+}]

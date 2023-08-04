@@ -1,19 +1,19 @@
 /** Module to handle the pads save. */
 
-import "./dependencies/jszip.js";
-import "./dependencies/jszip-utils.min.js";
-import { saveAs } from './dependencies/FileSaver.min.js';
-import { export_url_suffix } from "./handle-pads.js";
-import config from "../../config.js";
-
-// Load the pads synchronously
-const response = await fetch(config.padsUrl);
-const pads = await response.json();
+import "../dependencies/jszip.js";
+import "../dependencies/jszip-utils.min.js";
+import { saveAs } from '../dependencies/FileSaver.min.js';
+import { export_url_suffix } from "./pads.js";
+import config from "../../../config.js";
 
 /**
  * Saves the pads' contents as raw text, zips it and downloads it.
  */
-window.savePads = function(){
+window.savePads = async function(){
+
+    const response = await fetch(config.padsUrl);
+    const pads = await response.json();
+
     var zip = new JSZip();
     
     pads.forEach((pad) => {

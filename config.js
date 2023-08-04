@@ -13,6 +13,7 @@ export default {
 
     // Edit this if you want to use another JSON file to specify the pads to load, it can be a relative or absolute URL
     padsUrl: "pads.json", 
+    backupsUrl: "backups.json", 
     
     // And if you want, you can edit your metadata here.
     author: "Éditions Burn~Août",

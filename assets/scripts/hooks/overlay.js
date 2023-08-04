@@ -4,7 +4,7 @@
  */
 
 import { getTranslationPercentage, getAcceptedTranslationPercentage } from "./replace_translation.js"
-import "../save.js";
+import "../utils/save.js";
 
 export default class Overlay {
     constructor(parent, pads, title, infoText) {

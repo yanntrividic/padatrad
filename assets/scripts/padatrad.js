@@ -1,6 +1,6 @@
 import config from "../../config.js";
-import genMeta from "./meta.js"
-import { insertTag, export_url_suffix } from "./handle-pads.js";
+import genMeta from "./utils/meta.js"
+import { insertTag, export_url_suffix } from "./utils/pads.js";
 import "./dependencies/paged.polyfill.js";
 import "./hooks/hooks.js";
 

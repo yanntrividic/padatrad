@@ -7,11 +7,13 @@
  * @license GPLv3
  */
 
+import config from "../../../config.js";
+
 /**
  * Fetches the backups from the backups.json file
  */
 async function fetchBackups() {
-    const response = await fetch('backups.json');
+    const response = await fetch(config.backupsUrl);
     const backups = await response.json();
     return backups;
 }
@@ -25,7 +27,7 @@ async function fetchBackups() {
  */
 function getListOfBackups() {
     fetchBackups().then(backups => {
-        backups.backups.forEach((backup) => {
+        backups.forEach((backup) => {
             const p = document.createElement("p");
             const dateString = backup.file_id.match(/(\d+)$/)[0]; // gets the trailing digits of the file_id
 
@@ -40,7 +42,10 @@ function getListOfBackups() {
 
             var li = document.createElement("li");
             const aZip = document.createElement("a");
-            aZip.setAttribute("href", window.location.href + "backup.html?zip=zip/" + backup.file_id + ".zip");
+            console.log(window.location.href);
+            let parentDir = window.location.href.replace(/\/$/, "").split("/").slice(0, -1).join("/");
+            console.log(parentDir);
+            aZip.setAttribute("href", parentDir + "/index.html?zip=zip/" + backup.file_id + ".zip");
             aZip.innerHTML = "Prévisualisation&#x202F;;";
             li.appendChild(aZip);
             ul.appendChild(li);
@@ -76,3 +81,8 @@ function getZipFromArgs(){
     params = new URLSearchParams(window.location.search);
     return params.get("zip");
 }
+
+let h = document.createElement("h1");
+h.innerHTML = "Backups" ;
+document.body.append(h);
+getListOfBackups();
