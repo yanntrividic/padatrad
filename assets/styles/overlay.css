@@ -23,6 +23,7 @@
 [data-id="overlay"] .title {
     font-weight: bold;
     font-style: italic;
+    text-decoration: underline;
 }
 
 [data-id="overlay"] a:hover {
@@ -132,18 +133,27 @@ button {
         left: 0;
         position: fixed;
         box-sizing:border-box;
-        margin: .5em;
-    }
+        margin: 3vw;
+   }
 
     [data-id="miniOverlay"]{
         display: block;
     }
 
-    [data-id="overlay"] {
+    [data-id="overlay"], [data-id="overlay"] li, [data-id="overlay"] ul {
         display: flex;
         flex-wrap: wrap;
         gap: 5px;
         justify-content: space-around;
+        flex-direction: row;
+    }
+    
+    [data-id="overlay"] {
+        width: 94vw !important;
+    }
+    
+    [data-id="overlay"] li, [data-id="overlay"] ul {
+        margin: 0;
     }
 
     [data-id="overlay"] > a, button {
