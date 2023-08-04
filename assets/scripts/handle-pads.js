@@ -9,46 +9,6 @@
 const data_suffix = "_data";
 const export_url_suffix = "/export/txt";
 
-/**
- * Replaces the Markdown content of a particular element with HTML code 
- * @param {String} id 
- */
-function run(id, md) {
-    var text = document.getElementById(id + data_suffix).innerHTML,
-    target = document.getElementById(id),
-    html = md.render(text);
-    //console.log(html);
-    target.innerHTML = html;
-}
-
-/**
- * Master function that loads the content of a series of pads into the DOM
- */
- async function generateHtmlFromPads(padsUrlFromIndex){
-    // We wanna replicate this :
-    // <link id="pad-css" href="https://pad.roflcopter.fr/p/CSSVitry/export/txt" rel="stylesheet" type="text/plain" />
-    // or, if md
-    // <div data-md="https://pads.domainepublic.net/p/CouvVitry/export/txt" id="first_src"></div>
-    // <section id="first"></section>
-    padsUrl = padsUrlFromIndex;
-    let promise = new Promise((resolve, reject) => {
-        resolve(fetchPads());
-    });
-
-    let pads = await promise;
-
-    promise = new Promise((resolve, reject) => {
-        resolve(loadPads(pads));
-    })
-    
-    await promise ;
-
-
-    promise = new Promise((resolve, reject) => {
-        resolve(putPadsDataHtml(padsUrl));
-    })
-}
-
 export function insertTag(pad){
     if(pad.type == "md") {
         insertMdTags(pad);
@@ -59,7 +19,6 @@ export function insertTag(pad){
     }
     console.log(`${pad.id} pad loaded.`);
 }
-
 
 /**
  * Inserts two elements in the DOM: a section that will hold the final HTML code,
@@ -126,68 +85,7 @@ function insertCssTag(pad) {
     document.head.append(style);
 }
 
-/**
- * Processes the data elements to turn them into HTML code.
- */
-export async function putPadDataHtml(pad, md){
-    return $(document).ready(function(){
-        var formated = pad.id + '_data';
-        let link = document.getElementById(formated);
-        console.log(formated, link);
-        $(formated).load($(formated).attr("data-md"), function(){
-            run(pad.id, md);
-            $(formated).remove();
-        });
-    });
-}
 
-/**
- * Adds links for the pads into a pannel element.
- * @param {Element} pannel 
- */
-window.generateOverlayTags = async function(pannel){
-    // function used in the overlay to generate the list of links
-    
-    fetchPads().then(pads => {
-        var md = [];
-        var css = [];
-        pads.pads.forEach((pad) => {
-            if(pad.type == "md") {
-                md.push(pad);
-            } else if(pad.type == "css") {
-                css.push(pad);
-            } else {
-                console.error(`${pad.id} is neither Markdown nor CSS.`);
-            }
-        });
-        return [md, css];
-    }).then(arrays => {
-        addListOfLinks(arrays[0], pannel, true);
-        addListOfLinks(arrays[1], pannel, false);
-    });
-}
-
-/**
- * Generate a list of link elements based on a list of pads
- * @param {List of dicts} pads 
- * @param {Element} pannel 
- * @param {Boolean} isCss  
- */
-function addListOfLinks(pads, pannel, isCss){
-    pads.forEach((pad) => {
-        let a = document.createElement("a");
-        a.setAttribute("href", pad.url);
-        a.setAttribute("target", "_blank");
-        if(isCss) {
-            a.setAttribute("onmouseover", `chco("${pad.id}", "var(--color-hover)")`); //for mouse hover highlight
-            a.setAttribute("onmouseout", `chco("${pad.id}", "")`);
-        }
-        a.innerText = pad.string ;
-        pannel.append(a);
-        pannel.append(document.createElement("br"));
-    });
-    pannel.append(document.createElement("br"));
-}
 
 /**
  * Saves the pads' contents as raw text, zips it and downloads it.
@@ -221,17 +119,6 @@ window.savePads = function(){
         });
         
     });
-}
-
-/**
- * Changes the color of a section
- * @param {String} id 
- * @param {String} color 
- */
-function chco(id, color) {
-    document.querySelectorAll(("[data-id='"+id+"']")).forEach(element => {
-        element.style.color = color;
-    });   
 }
 
 /**

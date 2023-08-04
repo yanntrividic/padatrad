@@ -152,10 +152,10 @@ let textLength = 0;
 let translationLength = 0;
 let acceptedTranslationLength = 0;
 
-function getTranslationPercentage(){
+export function getTranslationPercentage(){
     return translationLength/textLength;
 }
 
-function getAcceptedTranslationPercentage(){
+export function getAcceptedTranslationPercentage(){
     return acceptedTranslationLength/textLength;
 }

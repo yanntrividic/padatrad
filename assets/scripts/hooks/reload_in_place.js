@@ -50,15 +50,15 @@ function saveAmountScrolled(){
 // last saved position, or at least last compiled page
 
 
-// window.onload = moveFast;
+window.onload = moveFast;
 
 function moveFast() {
     machineScroll= true;
     var styleEl = document.createElement('style');
     document.head.appendChild(styleEl);
     var styleSheet = styleEl.sheet;
-    // styleSheet.insertRule('.pagedjs_pages { filter: blur(10px); }', 0); 
-    //styleSheet.insertRule('.pagedjs_pages { opacity: 0.1; }', 0); 
+    styleSheet.insertRule('.pagedjs_pages { filter: blur(10px); }', 0); 
+    styleSheet.insertRule('.pagedjs_pages { opacity: 0.1; }', 0); 
     var savedData = localStorage.getItem(fileTitle);
     if (savedData) {
         var scrollArray = JSON.parse(savedData);

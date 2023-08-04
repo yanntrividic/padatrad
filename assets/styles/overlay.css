@@ -14,9 +14,15 @@
 }
 
 [data-id="overlay"] {
+    color: black;
     font-size: clamp(12px, 2vw, 16px);
     line-height: 1.5em;
     padding:1em .5em;
+}
+
+[data-id="overlay"] .title {
+    font-weight: bold;
+    font-style: italic;
 }
 
 [data-id="overlay"] a:hover {
@@ -28,6 +34,15 @@
 [data-id="overlay"] label:hover {
     font-weight: bold;
     cursor:pointer;
+}
+
+[data-id="overlay"] label {
+    line-height: 2em;
+}
+
+[data-id="overlay"] ul {
+    list-style: none;
+    padding-left: 0;
 }
 
 [data-id="modal"] {
@@ -43,6 +58,10 @@
     position:fixed;
     display: none;
     font-family: "IBM Plex Mono";
+}
+
+[data-id="modal"] p {
+    color: black;
 }
 
 .reduce, .close {

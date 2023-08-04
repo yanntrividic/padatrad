@@ -1,17 +1,16 @@
 import config from "../../config.js";
-import { insertTag, putPadDataHtml } from "./handle-pads.js";
+import genMeta from "./meta.js"
+import { insertTag } from "./handle-pads.js";
+import "./hooks/hooks.js";
 
 const export_url_suffix = "/export/txt";
 
-// Disabling PagedJS auto startup
-window.PagedConfig = {
-    auto: false
-};
+// Generates the metadata of the header
+genMeta(config);
 
 // Load the pads synchronously
 const response = await fetch(config.padsUrl);
 const pads = await response.json();
-console.log(pads);
 
 // Loading Markdownit and its plugins
 let md = window.markdownit({html: true});
@@ -31,9 +30,14 @@ pads.forEach(pad => {
 await Promise.all(promises);
 
 // Once everything was processed, we can launch PagedJS
+document.body.style.display = "block";
 window.PagedPolyfill.preview(); 
 
-// load JS and insert in script tags
+/**
+ * Takes a pad object and loads it in the corresponding element
+ * @param {Object} pad a pad object that holds a url and an id.
+ * @returns a promise that is resolved once the text is loaded and converted
+ */
 function load(pad) {
     if(pad.type == "md"){
         return fetch(pad.url + export_url_suffix)
@@ -44,6 +48,11 @@ function load(pad) {
     }
 }
 
+/**
+ * Awaits a Markdown string to convert it and put it in a specific innerHTML's tag
+ * @param {String} id id of the tag
+ * @param {Promise} response promise that contains the markdown text to insert
+ */
 async function mdToHtml(id, response) {
     let target = document.getElementById(id);
     target.innerHTML = md.render(await response.text());
