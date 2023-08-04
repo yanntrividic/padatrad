@@ -1,6 +1,6 @@
 // https://github.com/mb21/markdown-it-bracketed-spans
 
-function bracketed_spans_plugin(md) {
+export function bracketed_spans_plugin(md) {
 
   function span(state) {
     var max = state.posMax

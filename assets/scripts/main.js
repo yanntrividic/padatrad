@@ -1,9 +1,12 @@
 import config from "../../config.js";
 import genMeta from "./meta.js"
-import { insertTag } from "./handle-pads.js";
+import { insertTag, export_url_suffix } from "./handle-pads.js";
+import "./dependencies/paged.polyfill.js";
 import "./hooks/hooks.js";
 
-const export_url_suffix = "/export/txt";
+import "./dependencies/markdown-it.js";
+import "./dependencies/markdown-it-attrs.js";
+import { bracketed_spans_plugin } from "./dependencies/markdown-it-bracketed-spans.js";
 
 // Generates the metadata of the header
 genMeta(config);
@@ -31,7 +34,7 @@ await Promise.all(promises);
 
 // Once everything was processed, we can launch PagedJS
 document.body.style.display = "block";
-window.PagedPolyfill.preview(); 
+window.PagedPolyfill.preview();
 
 /**
  * Takes a pad object and loads it in the corresponding element
@@ -40,11 +43,17 @@ window.PagedPolyfill.preview();
  */
 function load(pad) {
     if(pad.type == "md"){
-        return fetch(pad.url + export_url_suffix)
-        .then(async function (response) {
-            console.log(pad.id)
-            await mdToHtml(pad.id, response);
-        })
+        try{
+            return fetch(pad.url + export_url_suffix)
+            .then(async function (response) {
+                // console.log(pad.id)
+                await mdToHtml(pad.id, response);
+            })
+        } catch(e){
+            console.error("Too many reloads!");
+            alert("At least one of your pad couldn't be fetched.<br />Come back in a few seconds.");
+            return;
+        }
     }
 }
 

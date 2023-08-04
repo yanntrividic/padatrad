@@ -4,9 +4,7 @@
 // A simple script to add your pagedjs project. On reload, it will make the web browser scroll to the place it was before reload. 
 // Useful when styling or proof correcting your book. Multi docs compatible and doesn't wait for complete compilation to go.
 
-
-console.log("reload in place");
-
+// console.log("reload in place");
 
 // separate human / machine scroll
 var machineScroll = false;
@@ -41,7 +39,7 @@ function saveAmountScrolled(){
     if (!machineScroll) {
         var scrollLeft = window.pageXOffset || (document.documentElement || document.body.parentNode || document.body).scrollLeft
         scrollArray.push({ X: Math.round(scrollLeft), Y: Math.round(scrollTop) });
-        console.log("Saved ", scrollArray);
+        // console.log("Saved ", scrollArray);
         localStorage[fileTitle] = JSON.stringify(scrollArray);
     }
 }
