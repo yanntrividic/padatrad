@@ -23,6 +23,7 @@
 [data-id="overlay"] .title {
     font-weight: bold;
     font-style: italic;
+    font-size: 1.3em;
     text-decoration: underline;
 }
 

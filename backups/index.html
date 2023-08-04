@@ -9,8 +9,12 @@
         <link href="../assets/styles/modules/reset.css" rel="stylesheet">
         <link href="../assets/styles/backups.css" rel="stylesheet">
         <link href="../favicon.ico" rel="icon" type="image/x-icon" />
-        <script type="module" src="../assets/scripts/utils/backups.js"></script>
     </head>
     <body>
+        <h1>Backups</h1>
+        <script type="module">
+            import { getListOfBackups } from "../assets/scripts/utils/backups.js"
+            getListOfBackups();
+        </script>
     </body>
 </html>

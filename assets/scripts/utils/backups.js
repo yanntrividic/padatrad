@@ -25,7 +25,7 @@ async function fetchBackups() {
  * 2) Have a look at the PDF as pages
  * 3) Have a look at the imposed PDF
  */
-function getListOfBackups() {
+export function getListOfBackups() {
     fetchBackups().then(backups => {
         backups.forEach((backup) => {
             const p = document.createElement("p");
@@ -42,9 +42,7 @@ function getListOfBackups() {
 
             var li = document.createElement("li");
             const aZip = document.createElement("a");
-            console.log(window.location.href);
             let parentDir = window.location.href.replace(/\/$/, "").split("/").slice(0, -1).join("/");
-            console.log(parentDir);
             aZip.setAttribute("href", parentDir + "/index.html?zip=zip/" + backup.file_id + ".zip");
             aZip.innerHTML = "Prévisualisation&#x202F;;";
             li.appendChild(aZip);
@@ -77,12 +75,7 @@ function getParticipants(backup){
     return s.slice(0, s.length - 2) ;
 }
 
-function getZipFromArgs(){
-    params = new URLSearchParams(window.location.search);
+export function getZipFromArgs(){
+    let params = new URLSearchParams(window.location.search);
     return params.get("zip");
 }
-
-let h = document.createElement("h1");
-h.innerHTML = "Backups" ;
-document.body.append(h);
-getListOfBackups();
