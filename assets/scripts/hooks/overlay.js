@@ -4,7 +4,8 @@
  */
 
 import { getTranslationPercentage, getAcceptedTranslationPercentage } from "./replace_translation.js"
-import "../utils/save.js";
+import "../utils/saver.js";
+import { isBackup, getDate, getZipFromArgs } from "../utils/backups.js";
 
 export default class Overlay {
     constructor(parent, pads, title, infoText) {
@@ -73,12 +74,14 @@ export default class Overlay {
         this.generateTranslationStatus();
 
         this.generateButton("btnInfo", "Infos", () => { displayModal(); })
-        this.generateButton("btnSave", "Sauvegarder", () => { savePads(); })
+        if (!isBackup()) this.generateButton("btnSave", "Sauvegarder", () => { savePads(); })
         this.generateButton("btnBackups", "Backups", () => { window.open('backups', '_blank' ); })
         this.insertButtons();
 
-        this.generateLinks();
-        this.insertLinks();
+        if (!isBackup()) {
+            this.generateLinks();
+            this.insertLinks();
+        }
 
         this.parent.appendChild(this.pannel);
     }
@@ -97,7 +100,7 @@ export default class Overlay {
         percentage.setAttribute("for", "cBoxHighlight");
         let translationPercentage = `<span style="background-color:var(--color-background-target);">` + (getTranslationPercentage()*100).toFixed(1) + "&#x202F;%" + "</span>";
         let acceptedTranslationPercentage = `<span style="background-color:var(--color-background-accepted);">` + (getAcceptedTranslationPercentage()*100).toFixed(1) + "&#x202F;%" + "</span>";
-        percentage.innerHTML = "<span class=\"title\">" + this.title + "</span><br />" + acceptedTranslationPercentage + "&#x202F;/&#x202F;" + translationPercentage + "&#x00A0;";
+        percentage.innerHTML = "<span class=\"title\">" + (isBackup()?("Backup<br />" + getDate(getZipFromArgs())):this.title) + "</span><br />" + acceptedTranslationPercentage + "&#x202F;/&#x202F;" + translationPercentage + "&#x00A0;";
 
         highlight.appendChild(percentage);
         highlight.appendChild(inputHighlight);
@@ -238,7 +241,6 @@ function isFirstVisit(){
 }
 
 function displayModal(modal){
-    console.log("displayModal")
     let display = document.querySelectorAll(`[data-id="modal"]`)[0].style.display;
     if (display != "block") {
         document.querySelectorAll(`[data-id="modal"]`)[0].style.display = "block";

@@ -8,6 +8,10 @@
  */
 
 import config from "../../../config.js";
+import { data_suffix } from "./pads.js" ;
+import convert from "./converter.js";
+
+const zipDir = "/backups/zip/"
 
 /**
  * Fetches the backups from the backups.json file
@@ -29,12 +33,10 @@ export function getListOfBackups() {
     fetchBackups().then(backups => {
         backups.forEach((backup) => {
             const p = document.createElement("p");
-            const dateString = backup.file_id.match(/(\d+)$/)[0]; // gets the trailing digits of the file_id
 
-            let date ;
-            if (dateString.length == 14) date = dateString.substring(6, 8) + "/" + dateString.substring(4, 6) + "/" + dateString.substring(0, 4) ;
-            
             const participants = getParticipants(backup);
+            const date = getDate(backup.file_id);
+
             p.innerHTML = backup.string + (date?" (" + date + ")":"") + " avec " + participants + "&#x00A0;: ";
             document.body.appendChild(p);
 
@@ -43,7 +45,7 @@ export function getListOfBackups() {
             var li = document.createElement("li");
             const aZip = document.createElement("a");
             let parentDir = window.location.href.replace(/\/$/, "").split("/").slice(0, -1).join("/");
-            aZip.setAttribute("href", parentDir + "/index.html?zip=zip/" + backup.file_id + ".zip");
+            aZip.setAttribute("href", parentDir + "/index.html?zip=" + backup.file_id);
             aZip.innerHTML = "Prévisualisation&#x202F;;";
             li.appendChild(aZip);
             ul.appendChild(li);
@@ -78,4 +80,84 @@ function getParticipants(backup){
 export function getZipFromArgs(){
     let params = new URLSearchParams(window.location.search);
     return params.get("zip");
+}
+
+
+/**
+ * Reads a zip file and loads the content of the files in the corresponding HTML elements
+ * @param {String} file
+ */
+export async function loadZipIntoHtml(file){
+    return new JSZip.external.Promise(function (resolve, reject) {
+        JSZipUtils.getBinaryContent(zipDir + file + ".zip", function(err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    }).then(function (data) {
+        return JSZip.loadAsync(data);
+    }).then(async function (data) {
+        for(let [filename, file] of Object.entries(data.files)) {
+            await data.file(filename).async("string").then(function(data) {
+                const ext = filename.split('.').pop();
+                const id = filename.split('.')[0]; // won't work well if several dots
+                if(ext == "md") {
+                    insertMdTagsFromBackup(id, data);
+                } else if(ext == "css") {
+                    insertCssTagsFromBackup(id, data);
+                }
+                //console.log(data)
+            }).catch(function(err) {
+                console.error("Failed to open", filename, " as ZIP file:", err);
+            })
+        }  
+    }); 
+}
+
+
+
+
+/**
+ * Generates an HTML section out of Markdown text data.
+ * @param {String} id of the section generated (name of the file)
+ * @param {String} content Markdown text
+ */
+function insertMdTagsFromBackup(id, content){
+    var data = document.createElement("div");
+    data.setAttribute("id", id + data_suffix);
+    document.body.appendChild(data);
+    
+    // Generate section
+    var section = document.createElement("section");
+    section.setAttribute("id", id);
+    document.body.appendChild(section);
+
+    section.innerHTML = convert(content);
+    data.remove();
+}
+
+/**
+ * Loads the CSS contained in a pad into the DOM.
+ * @param {String} id of the section generated (name of the file)
+ * @param {String} content CSS plain text
+ */
+ function insertCssTagsFromBackup(id, content) {
+    // Generate link element
+    var style = document.createElement("style");
+    style.setAttribute("id", id);
+    style.innerHTML = content;
+    document.head.append(style);
+}
+
+export function getDate(backupId) {
+    const dateString = backupId.match(/(\d+)$/)[0]; // gets the trailing digits of the file_id
+    let date ;
+    if (dateString.length == 14) date = dateString.substring(6, 8) + "/" + dateString.substring(4, 6) + "/" + dateString.substring(0, 4) ;
+    return date ;
+}
+
+export function isBackup() {
+    return document.querySelectorAll(`meta[name="category"]`)[0].content == "backup";
 }

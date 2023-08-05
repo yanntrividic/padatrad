@@ -6,7 +6,9 @@
  * @license GPLv3
  */
 
-const data_suffix = "_data";
+import convert from "./converter.js"
+
+export const data_suffix = "_data";
 export const export_url_suffix = "/export/txt";
 
 export function insertTag(pad){
@@ -39,26 +41,6 @@ function insertMdTags(pad) {
 }
 
 /**
- * Generates an HTML section out of Markdown text data.
- * @param {String} id of the section generated (name of the file)
- * @param {String} content Markdown text
- */
-function insertMdTagsFromBackup(id, content){
-    var data = document.createElement("div");
-    data.setAttribute("id", id + data_suffix);
-    data.innerHTML = content
-    document.body.appendChild(data);
-    
-    // Generate section
-    var section = document.createElement("section");
-    section.setAttribute("id", id);
-    document.body.appendChild(section);
-
-    run(id);
-    data.remove();
-}
-
-/**
  * Loads the CSS contained in a pad into the DOM.
  * @param {Dict} pad 
  */
@@ -73,45 +55,24 @@ function insertCssTag(pad) {
 }
 
 /**
- * Loads the CSS contained in a pad into the DOM.
- * @param {String} id of the section generated (name of the file)
- * @param {String} content CSS plain text
+ * Takes a pad object and loads it in the corresponding element
+ * @param {Object} pad a pad object that holds a url and an id.
+ * @returns a promise that is resolved once the text is loaded and converted
  */
- function insertCssTagsFromBackup(id, content) {
-    // Generate link element
-    var style = document.createElement("style");
-    style.setAttribute("id", id);
-    style.innerHTML = content;
-    document.head.append(style);
-}
-
-
-/**
- * Reads a zip file and loads the content of the files in the corresponding HTML elements
- * @param {String} file
- */
-function loadZipIntoHtml(file){
-    JSZipUtils.getBinaryContent(file, function(err, data) {
-        if(err) {
-            throw err; // or handle err
+export function load(pad) {
+    if(pad.type == "md"){
+        try{
+            return fetch(pad.url + export_url_suffix)
+            .then(async function (response) {
+                // console.log(pad.id)
+                let text = await response.text();
+                let target = document.getElementById(pad.id);
+                target.innerHTML = convert(text);
+            })
+        } catch(e){
+            console.error("Too many reloads!");
+            alert("At least one of your pad couldn't be fetched.<br />Come back in a few seconds.");
+            return;
         }
-    
-        JSZip.loadAsync(data).then(function (data) {
-            for(let [filename, file] of Object.entries(data.files)) {
-                data.file(filename).async("string").then(function(data) {
-                    const ext = filename.split('.').pop();
-                    const id = filename.split('.')[0]; // won't work well if several dots
-                    if(ext == "md") {
-                        insertMdTagsFromBackup(id, data);
-                    } else if(ext == "css") {
-                        insertCssTagsFromBackup(id, data);
-                    }
-                    //console.log(data)
-                }).catch(function(err) {
-                    console.error("Failed to open", filename, " as ZIP file:", err);
-                })
-            }  
-        }); 
-    });
+    }
 }
-
