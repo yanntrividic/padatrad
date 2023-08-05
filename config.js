@@ -10,10 +10,16 @@ export default {
 
     sourceLanguage: "en", // The source language
     targetLanguage: "fr", // The target language
+    appLanguage: "fr", // The language of Padatrad, for now there is just french
 
     // Edit this if you want to use another JSON file to specify the pads to load, it can be a relative or absolute URL
-    padsUrl: "pads.json", 
-    backupsUrl: "backups.json", 
+    padsUrl: "/pads.json", 
+    backupsUrl: "/backups/backups.json", 
+    
+    // You can also add an external link to another app that would be coherent with your project
+    // Here, this is linked to an instance of Les Cahiers du studio, de l'atelier des chercheurs
+    extraUrlLabel: "Les Cahiers",
+    extraUrl: "https://les-cahiers.studiotheatre.fr/morale/",
     
     // And if you want, you can edit your metadata here.
     author: "Éditions Burn~Août",

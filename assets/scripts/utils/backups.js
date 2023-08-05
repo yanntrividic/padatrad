@@ -161,3 +161,21 @@ export function getDate(backupId) {
 export function isBackup() {
     return document.querySelectorAll(`meta[name="category"]`)[0].content == "backup";
 }
+
+export function getParticipantsAsList(backupId){
+    let l = document.createElement("ul");
+    l.setAttribute("id", "participantsList");
+
+    fetchBackups().then(backups => {
+        backups.forEach((backup) => {
+            if(backup.file_id.localeCompare(backupId) == 0) {
+                backup.participants.forEach((participant) => {
+                    let e = document.createElement("li");
+                    e.append(participant);
+                    l.append(e);
+                });
+            }
+        });
+    });
+    return l;
+}

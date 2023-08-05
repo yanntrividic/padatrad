@@ -25,6 +25,11 @@ Si vous avez des besoins spécifiques, je peux peut-être vous aider à les mett
 
 [Expliquer en quoi c'est pas mal.]
 
+Le fichier de configuration, dire qu'il s'agit principalement d'éditer deux fichiers qui permettent différents trucs
+Comment ajouter des hooks
+Utilisation du script make_booklet
+Installer un backup
+
 <!-- 
 // RESPONSIVE CHATONS PAD SERVERS
 //    https://pads.domainepublic.net/ 62ms

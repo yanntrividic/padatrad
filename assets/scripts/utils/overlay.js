@@ -3,14 +3,17 @@
  * that was built on top on PagedJS'
  */
 
-import { getTranslationPercentage, getAcceptedTranslationPercentage } from "./replace_translation.js"
-import "../utils/saver.js";
-import { isBackup, getDate, getZipFromArgs } from "../utils/backups.js";
+import { getTranslationPercentage, getAcceptedTranslationPercentage } from "../hooks/replace_translation.js"
+import "./saver.js";
+import { isBackup, getDate, getZipFromArgs, getParticipantsAsList } from "./backups.js";
+import { getJson } from "./pads.js";
+import config from "../../../config.js"
 
 export default class Overlay {
-    constructor(parent, pads, title, infoText) {
+    constructor(parent) {
         this.parent = parent ; // Parent in which will be inserted the html elements
-        this.pads = pads; // the pads of the project
+        this.pads ; // the pads of the project
+        this.backups ; // backups of the project
 
         this.pannel = document.createElement("aside") ;
         this.pannel.setAttribute("data-id", "overlay")
@@ -25,8 +28,10 @@ export default class Overlay {
         this.modal.setAttribute("data-id", "modal")
         this.modal.style = "position: fixed; display:none;"; // otherwise pagedjs removes the position attribute, and we don't want it shown by default
         
-        this.title = title; // title that will appear in the overlay
-        this.infoText = infoText; // text that will be displayed in the modal
+        this.title ; // title that will appear in the overlay
+        this.infoText ; // text that will be displayed in the modal
+        this.extraUrlLabel ;
+        this.extraUrl ;
 
         this.isFirstVisit = true;
 
@@ -41,7 +46,14 @@ export default class Overlay {
     /**
      * Initialization of the object
      */
-    init(){
+    async init(){
+        // From the config file
+        this.pads = await getJson(config.padsUrl);
+        this.title = (isBackup()?("Backup<br />" + getDate(getZipFromArgs())):config.title);
+        this.infoText = config.infoText;
+        this.extraUrlLabel = config.extraUrlLabel ;
+        this.extraUrl = config.extraUrl ;
+
         this.generatePannel() ; // Generates the main overlay pannel
         this.generateModal() ; // info modal in which is displayed the infoText
         this.generateMinipannel() ; // reduced version of the pannel
@@ -75,13 +87,16 @@ export default class Overlay {
 
         this.generateButton("btnInfo", "Infos", () => { displayModal(); })
         if (!isBackup()) this.generateButton("btnSave", "Sauvegarder", () => { savePads(); })
+        if(this.extraUrl && this.extraUrlLabel) {
+            this.generateButton("btnExtra", this.extraUrlLabel, () => { window.open(this.extraUrl, '_blank' ); });
+        }
         this.generateButton("btnBackups", "Backups", () => { window.open('backups', '_blank' ); })
         this.insertButtons();
 
         if (!isBackup()) {
             this.generateLinks();
             this.insertLinks();
-        }
+        } else this.generateParticipants();
 
         this.parent.appendChild(this.pannel);
     }
@@ -100,7 +115,7 @@ export default class Overlay {
         percentage.setAttribute("for", "cBoxHighlight");
         let translationPercentage = `<span style="background-color:var(--color-background-target);">` + (getTranslationPercentage()*100).toFixed(1) + "&#x202F;%" + "</span>";
         let acceptedTranslationPercentage = `<span style="background-color:var(--color-background-accepted);">` + (getAcceptedTranslationPercentage()*100).toFixed(1) + "&#x202F;%" + "</span>";
-        percentage.innerHTML = "<span class=\"title\">" + (isBackup()?("Backup<br />" + getDate(getZipFromArgs())):this.title) + "</span><br />" + acceptedTranslationPercentage + "&#x202F;/&#x202F;" + translationPercentage + "&#x00A0;";
+        percentage.innerHTML = "<span class=\"title\">" + this.title + "</span><br />" + acceptedTranslationPercentage + "&#x202F;/&#x202F;" + translationPercentage + "&#x00A0;";
 
         highlight.appendChild(percentage);
         highlight.appendChild(inputHighlight);
@@ -185,6 +200,10 @@ export default class Overlay {
             l.append(e);
         });
         this.pannel.append(l);
+    }
+
+    generateParticipants(){
+        this.pannel.append(getParticipantsAsList(getZipFromArgs()));
     }
     
 }

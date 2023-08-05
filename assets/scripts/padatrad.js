@@ -1,6 +1,6 @@
 import config from "../../config.js";
 import genMeta from "./utils/meta.js"
-import { insertTag, load } from "./utils/pads.js";
+import { insertTag, load, getJson } from "./utils/pads.js";
 import { getZipFromArgs, loadZipIntoHtml } from "./utils/backups.js";
 import "./dependencies/paged.polyfill.js";
 import "./hooks/hooks.js";
@@ -14,8 +14,7 @@ const zip = getZipFromArgs();
 
 if(!zip) { // when there is not zip argument, we load the app
     // Load the pads synchronously
-    const response = await fetch(config.padsUrl);
-    const pads = await response.json();
+    const pads = await getJson(config.padsUrl) ;
     
     // For each pad, a new tag is added in the body
     pads.forEach(pad => {

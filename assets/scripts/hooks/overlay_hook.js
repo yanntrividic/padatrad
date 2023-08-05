@@ -8,11 +8,7 @@
  * @see https://gitlab.coko.foundation/pagedjs/templaters/forensic
  */
 
-import config from "../../../config.js"
-import Overlay from "./overlay.js";
-
-const response = await fetch(config.padsUrl);
-const pads = await response.json();
+import Overlay from "../utils/overlay.js";
 
 class OverlayHook extends Paged.Handler {
     constructor(chunker, polisher, caller) {
@@ -21,8 +17,8 @@ class OverlayHook extends Paged.Handler {
     beforeParsed(content) {
         console.log("overlay is working...");
 
-        let overlay = new Overlay(document.body, pads, config.title, config.infoText) ;
-        overlay.init();
+        let overlay = new Overlay(document.body) ;
+        overlay.init(); // returns a promise that we don't have to wait for
     }
 }
 Paged.registerHandlers(OverlayHook);
