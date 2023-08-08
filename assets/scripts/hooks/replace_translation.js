@@ -4,11 +4,11 @@
  * @license GPLv3
  * @see https://gitlab.com/the-moral-of-the-xerox-vf
  *
- * based on Benoit Launay's forensic.js script
+ * inspired of Benoit Launay's forensic.js script
  * @see https://gitlab.coko.foundation/pagedjs/templaters/forensic
  */
 
-// TODO: add support for draft versions (maybe comments are enough though?)
+import config from "../../../config.js"
 
 // TODO: at the moment, the script has a strong limitation.
 //       It only allows one chunk of translation per paragraph.
@@ -27,16 +27,20 @@ class replaceTranslation extends Paged.Handler {
 
     
     beforeParsed(content) {
-        console.log("replaceTranslation is working...");
+        console.log("replaceTranslation is not working...");
         
-        const sources = content.querySelectorAll(".source"); // all the text we must translate
+        const sources = content.querySelectorAll("section > *:not(." + config.targetLanguage + ")"); // all the text we must translate
         sources.forEach((source) => {
-            source.setAttribute("lang", "en");
+            console.log(source);
+            source.setAttribute("lang", config.sourceLanguage);
+            addClass(source, "source");
             var target = this.getTarget(source);
             let sLength = this.getLength(source); // counts the number of chars
             textLength += sLength ;          // and adds it to the total length
             if (target) { // if the following element is a target element
-                target.setAttribute("lang", "fr");
+                target.setAttribute("lang", config.targetLanguage);
+                addClass(target, "target");
+                target.classList.remove(config.targetLanguage);
                 if (target.innerText != ""){ // if a translation is not empty
                     if (target.classList.contains("accepted")) acceptedTranslationLength += sLength ;
                     translationLength += sLength ; // the amount of translated chars is added to the translation's length
@@ -44,8 +48,12 @@ class replaceTranslation extends Paged.Handler {
                 } else target.remove();
             }
         });
-        let alts = this.getAltsCssSelector(content);
-        this.addOnclickToAlts(alts);
+    }
+
+    afterPreview(pages){
+        let alts = this.getAltsCssSelector(document);
+        console.log(alts);
+        addOnclickToAlts(alts);
         this.permuteAlts(alts);
     }
 
@@ -56,11 +64,17 @@ class replaceTranslation extends Paged.Handler {
      * @returns the p targement element
      */
     getTarget(source){
-        let target = source.nextSibling.nextSibling; // all the translations
-        if(target.classList.contains("target")){
+        let target;
+        try {
+            target = source.nextSibling.nextSibling; // all the translations
+        } catch(e) {
+            // End of section
+            return ;
+        }
+        if(target &&    target.hasAttribute("class") && target.classList.contains(config.targetLanguage)){
             return target;
         } else {
-            console.error("Translation element is missing after " + source.innerText.slice(0, 10) + "...");
+            // console.error("Translation element is missing after \"" + source.innerText.slice(0, 10) + "...\"");
             return false;
         }
     }
@@ -85,31 +99,32 @@ class replaceTranslation extends Paged.Handler {
      */
     permuteAlts(alts){
         for(let i = 0 ; i < alts.length ; i++){
+            let keep = alts[i].hasAttribute("default");
             alts[i].setAttribute("default", alts[i].innerText); // keeps track of the default value
-            permuteAlt(alts[i], true);
-        }
-    }
-
-    /**
-     * Adds a .random class to the elements and an onlick attribute for the permuteAlt function 
-     * @param {*} alts elements that can have alternative translations
-     */
-    addOnclickToAlts(alts){
-        for(let i = 0 ; i < alts.length ; i++){
-            alts[i].classList.add("random");
-            alts[i].setAttribute("onclick", "permuteAlt(this)");
+            if(!keep) permuteAlt(alts[i], true);
         }
     }
 
     getLength(element){
         return element.innerText.length;
     }
-
+    
 }
 Paged.registerHandlers(replaceTranslation);
 
 
 const MAX_ALTS = 10; // number of alternates allowed in alt(\d+)?
+
+/**
+ * Adds a .random class to the elements and an onlick attribute for the permuteAlt function 
+ * @param {*} alts elements that can have alternative translations
+ */
+function addOnclickToAlts(alts){
+    for(let i = 0 ; i < alts.length ; i++){
+        alts[i].classList.add("random");
+        alts[i].addEventListener("click", permuteAltEvent);
+    }
+}
 
 /**
  * Defines the list of attributes we will check for alternative translation
@@ -130,9 +145,13 @@ const listOfAltsAttrs = getListOfAlts();
  * Randomly permutes the innerText of an element in the case it has alternative
  * versions that were specified in its attributes.
  * @param {element} elem The element that will have its innertext permuted
- * @param {Boolean} replacement If replacmements are allowed or not
+ * @param {Boolean} replacement If replacements are allowed or not
  */
-function permuteAlt(elem, replacement=false){
+function permuteAltEvent(event){
+    permuteAlt(event.target);
+}
+
+function permuteAlt(elem, replacement=false) {
     let events = [elem.innerText];
     let attrs = listOfAltsAttrs.concat(["default"]) ;
     for(let i = 0 ; i < attrs.length; i++ ){
@@ -148,14 +167,23 @@ function permuteAlt(elem, replacement=false){
     elem.innerText = choice;
 }
 
+
 let textLength = 0;
 let translationLength = 0;
 let acceptedTranslationLength = 0;
 
-function getTranslationPercentage(){
+export function getTranslationPercentage(){
     return translationLength/textLength;
 }
 
-function getAcceptedTranslationPercentage(){
+export function getAcceptedTranslationPercentage(){
     return acceptedTranslationLength/textLength;
+}
+
+function addClass(element, className) {
+    try {
+        element.classList.add(className);
+    } catch(e) {
+        element.classList = [className];
+    }
 }
