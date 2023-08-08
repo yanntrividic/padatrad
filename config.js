@@ -1,5 +1,5 @@
 /**
- * Everything in there is here to be edited, please make yourself at home!
+ * @file Everything in there is here to be edited, please make yourself at home!
  */
 
 export default {
@@ -12,7 +12,8 @@ export default {
     targetLanguage: "fr", // The target language
     appLanguage: "fr", // The language of Padatrad, for now there is just french
 
-    // Edit this if you want to use another JSON file to specify the pads to load, it can be a relative or absolute URL
+    // Edit this if you want to use another JSON file to specify the pads to load,
+    // it can be a relative or absolute URL
     padsUrl: "/pads.json", 
     backupsUrl: "/backups/backups.json", 
     

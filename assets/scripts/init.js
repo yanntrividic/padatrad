@@ -1,5 +1,5 @@
 /**
- * Stuff to do on startup
+ * @file Stuff to do on startup
  */
 
 window.PagedConfig = {

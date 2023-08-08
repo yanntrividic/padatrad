@@ -1,3 +1,10 @@
+/**
+ * @file Padatrad is a free and opensource webapp made to facilitate the publishing of collaborative translation.
+ * @author Yann Trividic
+ * @license GPLv3
+ * @see https://gitlab.com/editionsburnaout/padatrad
+ */
+
 import config from "../../config.js";
 import genMeta from "./utils/meta.js"
 import { insertTag, load, getJson } from "./utils/pads.js";

@@ -1,48 +1,18 @@
 [{
-    "id": "couv",
-    "string": "Couverture",
+    "id": "section1",
+    "string": "Section 1",
     "type": "md",
-    "url": "https://pads.domainepublic.net/p/CouvVitry"
+    "url": "https://pads.domainepublic.net/p/padatrad1"
 },
 {
-    "id": "voice1",
-    "string": "Clara",
+    "id": "section2",
+    "string": "Section 2",
     "type": "md",
-    "url": "https://ether.immae.eu/p/ClaraVitry"
+    "url": "https://ether.immae.eu/p/padatrad2"
 },
 {
-    "id": "voice2",
-    "string": "Florian",
-    "type": "md",
-    "url": "https://pad.evolix.org/p/FlorianVitry"
-},
-{
-    "id": "voice1_margins",
-    "string": "Marges Clara",
-    "type": "md",
-    "url": "https://pad.kaz.bzh/p/MargesClaraVitry"
-},
-{
-    "id": "voice2_margins",
-    "string": "Marges Florian",
-    "type": "md",
-    "url": "https://pad.sequanux.org/p/MargesFlorianVitry"
-},
-{
-    "id": "images",
-    "string": "Images",
-    "type": "md",
-    "url": "https://pad.liberta.vip/p/ImagesVitry"
-},
-{
-    "id": "colophon",
-    "string": "Colophon",
-    "type": "md",
-    "url": "https://pad.libretic.fr/p/ColophonVitry"
-},
-{
-    "id": "pad-css",
-    "string": "CSS",
+    "id": "css",
+    "string": "Style",
     "type": "css",
-    "url": "https://pad.roflcopter.fr/p/CSSVitry"
+    "url": "https://pad.kaz.bzh/p/padatradstyle"
 }]

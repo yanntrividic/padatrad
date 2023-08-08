@@ -11,3 +11,5 @@ Traduire le dépôt en anglais
 Avoir une version avec le hook FacingSections
 
 Améliorer l'UI
+
+Faire une liste de boutons/liens à partir de `extraUrlLabel` et `extraUrl`

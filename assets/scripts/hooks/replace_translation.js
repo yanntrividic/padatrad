@@ -4,7 +4,7 @@
  * @license GPLv3
  * @see https://gitlab.com/the-moral-of-the-xerox-vf
  *
- * based on Benoit Launay's forensic.js script
+ * inspired of Benoit Launay's forensic.js script
  * @see https://gitlab.coko.foundation/pagedjs/templaters/forensic
  */
 
@@ -74,7 +74,7 @@ class replaceTranslation extends Paged.Handler {
         if(target &&    target.hasAttribute("class") && target.classList.contains(config.targetLanguage)){
             return target;
         } else {
-            console.error("Translation element is missing after \"" + source.innerText.slice(0, 10) + "...\"");
+            // console.error("Translation element is missing after \"" + source.innerText.slice(0, 10) + "...\"");
             return false;
         }
     }
