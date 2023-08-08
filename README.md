@@ -1,3 +1,5 @@
+{::options parse_block_html="true" /}
+
 # Padatrad
 
 Padatrad permet de traduire collectivement des textes et de les éditer depuis un navigateur web. Cette webapp est totalement rédigée en JavaScript ES6. Elle s'appuie sur les [Etherpads](https://fr.wikipedia.org/wiki/Etherpad), lit les contenus en [Markdown](https://fr.wikipedia.org/wiki/Markdown), et génère la prévisualisation pour l'impression avec la bibliothèque [PagedJS](https://pagedjs.org).
