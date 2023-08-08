@@ -22,7 +22,7 @@ Le fichier `config.js` vous permet de vous approprier votre instance de Padatrad
 
 ### Renseigner ses pads
 
-Le fichier `pads.json` vous permet de préciser sur quels pads sont vos contenus. Il existe deux types de pads : `md` pour les pads contenant vos textes, au format Markdown ; `css` pour vos feuilles de style CSS. Les différents pads sont chargés dans l'ordre spécifié dans ce fichier. Maintenant, concernant les autres champs :
+Le fichier `pads.json` vous permet de préciser sur quels pads sont vos contenus. Il existe deux types de pads : `md` pour les pads contenant vos textes, au format Markdown ; `css` pour vos feuilles de style CSS. Vous pouvez utiliser autant de pads que vous le souhaitez. Chaque pad en Markdown correspond à une section de votre document, et chaque pad CSS correspond à une feuille de style. Les différents pads sont chargés dans l'ordre spécifié dans ce fichier. Maintenant, concernant les autres champs :
 
 * `id` doit être rempli avec un nom unique ;
 * `string` vous permettra de retrouver votre pad dans le menu latéral ;
@@ -30,14 +30,55 @@ Le fichier `pads.json` vous permet de préciser sur quels pads sont vos contenus
 
 Une liste des CHATONS ayant déployé une instance publique d'Etherpad est disponible [ici](https://wiki.chatons.org/doku.php/services/bureautique_en_ligne/etherpad). 
 
-[!NOTE]
 Faites attention à n'utiliser qu'un pad par serveur, autrement les serveurs concernés bloqueront vos requêtes.
+{: .alert .alert-info}
 
 ## Usage
 
-### Édition des fichiers
+Une fois vos fichiers `config.js` et `pads.json` prêts, vous pouvez commencer à remplir vos pads.
 
-Markdownit et ses extensions
+### Préparation des fichiers et traduction
+
+Les pads contenant vos textes sources comme vos textes traduits devront être rédigés en Markdown. Nous utilisons le convertisseur Markdownit, dont la syntaxe est explicitée [ici](https://markdown-it.github.io/). Dans un premier temps, chaque section de votre texte source doit être convertie en Markdown et mise dans chaque pad. Prenons l'exemple d'une traduction de l'anglais vers le français avec un pad unique contenant un titre de niveau 1 et deux paragraphes :
+
+```
+# Example text
+
+This is an example for a translation from english to french.
+
+There is not much else to say about this example.
+```
+
+Une fois le texte prêt dans votre pad, il devrait apparaître aussi dans la prévisualisation de Padatrad. Vous pouvez alors commencer la traduction. Par exemple, pour traduire le premier paragraphe, ajoutez votre traduction sous le texte source concerné et précisez qu'il s'agit du texte cible en ajoutant la classe `{.fr}` en fin de paragraphe :
+
+```
+This is an example for a translation from english to french.
+
+Ceci est un example de traduction de l'anglais vers le français. {.fr}
+```
+
+Dans la prévisualisation, votre traduction devrait normalement remplacer le paragraphe source et être mis en valeur par un surlignement jaune. Un surlignement jaune indique que le texte a été traduit, mais pas encore validé. Vous pouvez désactiver le surlignement en cliquant sur le pourcentage de traduction effectué dans le menu latéral. Pour valider la traduction, ajoutez la classe `.accepted` à votre proposition :
+
+```
+Ceci est un example de traduction de l'anglais vers le français. {.fr .accepted}
+```
+
+Maintenant que vous savez comment traduire un paragraphe, vous savez virtuellement comment traduire tout type de document. Padatrad dispose aussi d'une fonctionnalité permettant de spécifier des variantes de traduction. Par exemple, vous pourriez vouloir voir coexister deux traductions pour la phrase précédente ; en plus de la première, on pourrait imaginer "Ceci est un example de traduction de la langue de Shakespeare vers celle de Molière." C'est possible en suivant cette syntaxe : 
+
+```
+Ceci est un example de traduction de [l'anglais vers le français]{alt="la langue de Shakespeare vers celle de Molière"}. {.fr .accepted}
+```
+
+Le texte apparaît alors surligné en rouge et une des deux versions est tirée au hasard lors de la génération de la prévisualisation. Si vous souhaitez ajouter des alternatives, vous pouvez en rajouter à la suite de la première, entre les accolades, en précédant la proposition non pas de `alt` mais de `alt1`, `alt2`, `alt3`, etc. Vous pouvez parcourir les alternatives dans la prévisualisation en cliquant sur le texte correspondant.
+
+Si vous souhaitez ne pas effectuer de tirage aléatoire dans la prévisualisation, alors ajoutez le mot-clé `default` entre les accolades. Dans l'exemple suivant, _traduction_ apparaîtra toujours en premier, mais le mot reste cliquable :
+
+```
+[traduction]{default alt="thème" alt2="transposition"}
+```
+
+Nous avons rajouté à markdown-it les extensions [markdown-it-attrs](https://www.npmjs.com/package/) ainsi que [markdown-it-bracketed-spans](https://www.npmjs.com/package/markdown-it-bracketed-spans) qui permettent aux utilisateurices une latitude importante pour remplir de nombreux besoins en termes de mise en page et de sémantisation.
+{: .alert .alert-info}
 
 ### Outils de traduction
 
