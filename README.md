@@ -8,15 +8,15 @@ De mars à juin 2023, avec les Éditions Burn~Août, nous avons donné une séri
 
 Ce logiciel s'inscrit dans cette lignée de projets reposant sur le paradigme _fetch, convert & publish_. [pad2print](https://gitlab.com/Luuse/pad2print) de Luuse, [Ethertoff](http://osp.kitchen/tools/ethertoff/) ou [Ether2html](http://osp.kitchen/tools/ether2html/) d’Open Source Publishing, [Collabprint](https://gitlab.com/quentinjuhel/collabprint) de Quentin Juhel, [Octomode](https://git.vvvvvvaria.org/varia/octomode) de Varia, [Libreto](https://libreto.net/) de Pierre Tandille, ou encore [Pink my pad!](https://pinkmypad.net/) de Nicolas Sauret[^julienb].
 
-Ce projet a pour particularité de s'intéresser à ce paradigme en mettant un accent sur la traduction collective, étant donné qu'il n'existait à notre connaissance aucun logiciel collaboratif et libre facilitant la traduction à plusieurs.
+Ce projet a pour particularité de s'intéresser à ce paradigme en mettant un accent sur la traduction collective, étant donné qu'il n'existait à notre connaissance aucun logiciel collaboratif et libre facilitant l'édition de traductions à plusieurs.
 
 [^julienb]: https://www.accentgrave.net/log/.
 
-
-## Visuels
 Ajouter des screenshots.
 
-## Installation
+## Installation et prérequis
+
+Pointer vers un tag.
 Un serveur HTTP, des serveurs pour héberger ses pads (qui peuvent être n'importe quel Chaton par exemple), et c'est tout, rien d'autre. \
 Pour l'exportation en PDF de votre travail, ça marche mieux avec les navigateurs Chrome ou Chromium. \
 Si vous avez des besoins spécifiques, je peux peut-être vous aider à les mettre en place.
@@ -25,10 +25,9 @@ Si vous avez des besoins spécifiques, je peux peut-être vous aider à les mett
 
 [Expliquer en quoi c'est pas mal.]
 
+### Configuration
+
 Le fichier de configuration, dire qu'il s'agit principalement d'éditer deux fichiers qui permettent différents trucs
-Comment ajouter des hooks
-Utilisation du script make_booklet
-Installer un backup
 
 <!-- 
 // RESPONSIVE CHATONS PAD SERVERS
@@ -48,7 +47,29 @@ Installer un backup
 //    https://pad.picasoft.net/ 314ms
 //    https://pad.libre-service.eu/ 325ms -->
 
-## Roadmap
+### Édition des fichiers
+
+Markdownit
+
+### Outils de traduction
+
+Classes de langue source et langue cible
+
+### Sauvegarde et backups
+
+Installer un backup
+
+### Exportation au format PDF
+
+Utilisation du script make_booklet
+
+### Implémentation de _hooks_ pour PagedJS
+
+Comment ajouter des hooks
+
+#### _Hooks_ déjà installés 
+
+## Feuille de route
 
 Voir le fichier [TODO.md](https://gitlab.com/yanntrividic/the-moral-of-the-xerox-vf/-/blob/main/TODO.md).
 
@@ -64,7 +85,5 @@ Ce programme a été développé par Yann Trividic pour le compte des Éditions 
 Merci à Julien Taquet et à Nicolas Taffin pour l'aide apportée sur PagedJS. Et surtout, merci à tous les participants et participantes aux ateliers, qui nous ont aidé à penser ce logiciel. 
 
 ## Licence
-Ce logiciel est distribué sous la licence GNU-GPL3.
 
-## Project status
-Ongoing development.
+Ce logiciel est distribué sous la licence GNU-GPL3.

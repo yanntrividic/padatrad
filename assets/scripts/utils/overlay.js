@@ -156,11 +156,11 @@ export default class Overlay {
         }
         modalContent.appendChild(close);
         
-        window.onclick = function(event) {
-            if (event.target == this.modal) {
-                document.querySelectorAll(`[data-id="modal"]`)[0].style.display = "none";
-            }
-        }
+        // window.onclick = function(event) {
+        //     if (event.target == this.modal) {
+        //         document.querySelectorAll(`[data-id="modal"]`)[0].style.display = "none";
+        //     }
+        // }
 
         var text = document.createElement("p");
         text.innerHTML = this.infoText;
