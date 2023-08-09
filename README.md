@@ -2,7 +2,7 @@
 
 Padatrad permet de traduire collectivement des textes et de les éditer depuis un navigateur web. Cette webapp est totalement rédigée en JavaScript ES6. Elle s'appuie sur les [Etherpads](https://fr.wikipedia.org/wiki/Etherpad), lit les contenus en [Markdown](https://fr.wikipedia.org/wiki/Markdown), et génère la prévisualisation pour l'impression avec la bibliothèque [PagedJS](https://pagedjs.org).
 
-![Vue du logiciel](https://gitlab.com/editionsburnaout/padatrad/-/raw/master/screenshot1.png)
+![Vue du logiciel](https://gitlab.com/editionsburnaout/padatrad/-/raw/master/screenshot1.png){width=100%}
 
 ## Description
 
@@ -30,7 +30,7 @@ Le fichier `pads.json` vous permet de préciser sur quels pads sont vos contenus
 
 Une liste des CHATONS ayant déployé une instance publique d'Etherpad est disponible [ici](https://wiki.chatons.org/doku.php/services/bureautique_en_ligne/etherpad). 
 
-> Faites attention à n'utiliser qu'un pad par serveur, autrement les serveurs concernés bloqueront vos requêtes.
+> **Attention :** Veillez à n'utiliser qu'un pad par serveur, autrement les serveurs concernés croiront que vous essayez de les DDOS et bloqueront vos requêtes.
 
 ## Usage
 
@@ -40,7 +40,7 @@ Une fois vos fichiers `config.js` et `pads.json` prêts, vous pouvez commencer �
 
 Les pads contenant vos textes sources comme vos textes traduits devront être rédigés en Markdown. Nous utilisons le convertisseur Markdownit, dont la syntaxe est explicitée [ici](https://markdown-it.github.io/). Dans un premier temps, chaque section de votre texte source doit être convertie en Markdown et mise dans chaque pad. Prenons l'exemple d'une traduction de l'anglais vers le français avec un pad unique contenant un titre de niveau 1 et deux paragraphes :
 
-```
+```markdown
 # Example text
 
 This is an example for a translation from english to french.
@@ -50,7 +50,7 @@ There is not much else to say about this example.
 
 Une fois le texte prêt dans votre pad, il devrait apparaître aussi dans la prévisualisation de Padatrad. Vous pouvez alors commencer la traduction. Par exemple, pour traduire le premier paragraphe, ajoutez votre traduction sous le texte source concerné et précisez qu'il s'agit du texte cible en ajoutant la classe `{.fr}` en fin de paragraphe :
 
-```
+```markdown
 This is an example for a translation from english to french.
 
 Ceci est un example de traduction de l'anglais vers le français. {.fr}
@@ -58,13 +58,13 @@ Ceci est un example de traduction de l'anglais vers le français. {.fr}
 
 Dans la prévisualisation, votre traduction devrait normalement remplacer le paragraphe source et être mis en valeur par un surlignement jaune. Un surlignement jaune indique que le texte a été traduit, mais pas encore validé. Vous pouvez désactiver le surlignement en cliquant sur le pourcentage de traduction effectué dans le menu latéral. Pour valider la traduction, ajoutez la classe `.accepted` à votre proposition :
 
-```
+```markdown
 Ceci est un example de traduction de l'anglais vers le français. {.fr .accepted}
 ```
 
 Maintenant que vous savez comment traduire un paragraphe, vous savez virtuellement comment traduire tout type de document. Padatrad dispose aussi d'une fonctionnalité permettant de spécifier des variantes de traduction. Par exemple, vous pourriez vouloir voir coexister deux traductions pour la phrase précédente ; en plus de la première, on pourrait imaginer "Ceci est un example de traduction de la langue de Shakespeare vers celle de Molière." C'est possible en suivant cette syntaxe : 
 
-```
+```markdown
 Ceci est un example de traduction de [l'anglais vers le français]{alt="la langue de Shakespeare vers celle de Molière"}. {.fr .accepted}
 ```
 
@@ -72,7 +72,7 @@ Le texte apparaît alors surligné en rouge et une des deux versions est tirée 
 
 Si vous souhaitez ne pas effectuer de tirage aléatoire dans la prévisualisation, alors ajoutez le mot-clé `default` entre les accolades. Dans l'exemple suivant, _traduction_ apparaîtra toujours en premier, mais le mot reste cliquable :
 
-```
+```markdown
 [traduction]{default alt="thème" alt2="transposition"}
 ```
 
@@ -91,22 +91,24 @@ Toutes vos sauvegardes sont accessibles via le bouton `Backups` du menu latéral
 
 ### Exportation au format PDF
 
-Pour l'exportation en PDF de votre travail, ça marche mieux avec les navigateurs Chrome ou Chromium.
-Utilisation du script make_booklet
+Avoir des archives de vos pads c'est cool, mais pouvoir exporter votre travail au format PDF c'est quand même mieux. PagedJS permet de prévisualiser ce qui se passe lorsqu'on cherche à imprimer une page web ; il suffit donc d'imprimer votre page web depuis votre navigateur pour obtenir un export au format PDF.
 
-### Implémentation de _hooks_ pour PagedJS
+> **Attention :** PagedJS est conçu pour fonctionner en priorité avec le moteur de rendu Blink. C'est le moteur utilisé par Google Chrome, Chromium, ou encore ungoogled-chromium. Si votre PDF ne ressemble pas à ce que vous voyez dans la prévisualisation, commencez par utiliser l'un de ces navigateurs pour exporter votre travail.
 
-Comment ajouter des hooks
+### Implémentation de vos propres hooks pour PagedJS
 
-#### _Hooks_ déjà installés 
+Pour automatiser certains traitements sur votre traduction, le plus simple sera certainement de passer par un hook avec PagedJS. Les hooks sont des plugins vous permettant de modifier le comportement de PagedJS. De nombreux hooks ont déjà été développés par la communauté. Pour les intégrer à votre projet, ajoutez le fichier JavaScript contenant votre hook dans le dossier `scripts/hooks` et modifiez le fichier `hooks.js` en y ajoutant la ligne correspondant à l'importation de votre hook.
 
+#### Hooks déjà installés 
 
+Quelques hooks ont déjà été installés dans Padatrad :
+- [reload_in_place](https://gitlab.com/nicolastaf/pagedjs-reload-in-place) de [Nicolas Taffin](https://polylogue.org/) ;
+- [regex_typo](https://gitlab.com/JulieBlanc/typesetting-tools) de [Julie Blanc](https://julie-blanc.fr/) ;
+- [Hyphenopoly](https://github.com/mnater/Hyphenopoly), avec un hook par Nicolas Taffin.
 
 ## Contribuer
 
-Voir le fichier [TODO.md](https://gitlab.com/yanntrividic/the-moral-of-the-xerox-vf/-/blob/main/TODO.md).
-Si vous voulez contribuer, envoyez-moi un mail, je serais trop content d'avoir de l'aide ! Contact : bonjour@yanntrividic.fr.
-Nous sommes ouverts à toute forme de contribution à condition qu'elles restent en JS vanille.
+Toute contribution est la bienvenue. Pour vous donner une idée de ce qui va nous occuper dans les prochaines versions, jetez un œil à [TODO.md](https://gitlab.com/yanntrividic/the-moral-of-the-xerox-vf/-/blob/main/TODO.md). Publiez une pull request, ou [contactez le mainteneur](mailto:bonjour@yanntrividic.fr) du projet.
 
 ## Auteur et mentions
 
@@ -116,4 +118,4 @@ Merci à Julien Taquet et à Nicolas Taffin pour l'aide apportée sur PagedJS. E
 
 ## Licence
 
-Ce logiciel est distribué sous la licence GNU-GPL3.
+Ce logiciel est distribué sous la licence GNU-GPL3. Les règles de cette licence n'impliquent pas de nous mettre au courant de vos usages du logiciel, mais si jamais vous vous en servez, [dites-le nous](mailto:burnaout@riseup.net), ça nous ferait très plaisir !
