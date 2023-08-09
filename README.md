@@ -30,7 +30,7 @@ Le fichier `pads.json` vous permet de préciser sur quels pads sont vos contenus
 
 Une liste des CHATONS ayant déployé une instance publique d'Etherpad est disponible [ici](https://wiki.chatons.org/doku.php/services/bureautique_en_ligne/etherpad). 
 
-Faites attention à n'utiliser qu'un pad par serveur, autrement les serveurs concernés bloqueront vos requêtes.
+> Faites attention à n'utiliser qu'un pad par serveur, autrement les serveurs concernés bloqueront vos requêtes.
 
 ## Usage
 
@@ -76,7 +76,7 @@ Si vous souhaitez ne pas effectuer de tirage aléatoire dans la prévisualisatio
 [traduction]{default alt="thème" alt2="transposition"}
 ```
 
-Nous avons rajouté à markdown-it les extensions [markdown-it-attrs](https://www.npmjs.com/package/) ainsi que [markdown-it-bracketed-spans](https://www.npmjs.com/package/markdown-it-bracketed-spans) qui permettent aux utilisateurices une latitude importante pour remplir de nombreux besoins en termes de mise en page et de sémantisation.
+> Nous avons rajouté à markdown-it les extensions [markdown-it-attrs](https://www.npmjs.com/package/) ainsi que [markdown-it-bracketed-spans](https://www.npmjs.com/package/markdown-it-bracketed-spans) qui permettent aux utilisateurices une latitude importante pour remplir de nombreux besoins en termes de mise en page et de sémantisation.
 
 
 ### Sauvegarde et backups
@@ -84,8 +84,8 @@ Nous avons rajouté à markdown-it les extensions [markdown-it-attrs](https://ww
 Pour sauvegarder l'état courant de votre traduction, cliquez sur le bouton `Sauvegarder` du menu latéral. Une archive de vos pads au format `zip` est sauvegardée sur votre machine. Il est possible d'intégrer cette archive à vos backups Padatrad et de la prévisualiser à nouveau plus tard. Pour ce faire, suivez la procédure suivante :
 
 1. Ajoutez l'archive dans le dossier `backups/zip` ;
-2. Ajoutez le nom du fichier (sans l'extension) à votre fichier `backups.json` ;
-3. Renseignez les autres champs de votre nouvelle entrée du fichier `backups.json`.
+1. Ajoutez le nom du fichier (sans l'extension) à votre fichier `backups.json` ;
+1. Renseignez les autres champs de votre nouvelle entrée du fichier `backups.json`.
 
 Toutes vos sauvegardes sont accessibles via le bouton `Backups` du menu latéral.
 
