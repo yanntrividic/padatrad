@@ -21,6 +21,8 @@ export default {
     // Here, this is linked to an instance of Les Cahiers du studio, de l'atelier des chercheurs
     extraUrlLabel: "Les Cahiers",
     extraUrl: "https://les-cahiers.studiotheatre.fr/morale/",
+
+    typesetting: true, // if you want to use Padatrad's typesetting features or not
     
     // And if you want, you can edit your metadata here.
     author: "Éditions Burn~Août",

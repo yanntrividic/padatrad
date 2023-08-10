@@ -108,7 +108,7 @@ Quelques hooks ont déjà été installés dans Padatrad :
 
 ## Contribuer
 
-Toute contribution est la bienvenue. Pour vous donner une idée de ce qui va nous occuper dans les prochaines versions, jetez un œil à notre [liste de choses à faire](https://gitlab.com/yanntrividic/the-moral-of-the-xerox-vf/-/blob/main/TODO.md). Vous êtes cordialement invité·es à nous soumettre une pull request, ou à [contacter le mainteneur](mailto:bonjour@yanntrividic.fr) du projet.
+Toute contribution est la bienvenue. Pour vous donner une idée de ce qui va nous occuper dans les prochaines versions, jetez un œil à notre [liste de choses à faire](https://gitlab.com/editionsburnaout/padatrad/-/blob/main/TODO.md). Vous êtes cordialement invité·es à nous soumettre une pull request, ou à [contacter le mainteneur](mailto:bonjour@yanntrividic.fr) du projet.
 
 ## Auteur et mentions
 

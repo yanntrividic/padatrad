@@ -42,7 +42,10 @@ if(!zip) { // when there is not zip argument, we load the app
 }
 
 // Fix the typo a bit
-regexTypo();
+if(config.typesetting) {
+    // Make Hyphenopoly happen here.
+    regexTypo();
+}
 
 // Once everything was processed, we can launch PagedJS
 document.body.style.display = "block";
