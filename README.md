@@ -38,7 +38,7 @@ Une fois vos fichiers `config.js` et `pads.json` prêts, vous pouvez commencer �
 
 ### Préparation des fichiers et traduction
 
-Les pads contenant vos textes sources comme vos textes traduits devront être rédigés en Markdown. Padatrad a recours au convertisseur Markdownit, dont la syntaxe est explicitée [ici](https://markdown-it.github.io/). Dans un premier temps, chaque section de votre texte source doit être convertie en Markdown et mise dans chaque pad (protip : pour faire ça, allez voir du côté de [Pandoc](https://pandoc.org/)). Prenons maintenant l'exemple d'une traduction de l'anglais vers le français avec un pad unique contenant un titre de niveau 1 et deux paragraphes :
+Les pads contenant vos textes sources comme vos textes traduits devront être rédigés en Markdown. Padatrad a recours au convertisseur Markdownit, dont la syntaxe est explicitée [ici](https://markdown-it.github.io/). Dans un premier temps, chaque section de votre texte source doit être mise dans chaque pad après conversion en Markdown et (protip : pour faire ça, allez voir du côté de [Pandoc](https://pandoc.org/)). Prenons maintenant l'exemple d'une traduction de l'anglais vers le français avec un pad unique contenant un titre de niveau 1 et deux paragraphes :
 
 ```markdown
 # Example text
@@ -104,7 +104,7 @@ Pour automatiser certains traitements sur votre traduction, le plus simple sera 
 Quelques hooks ont déjà été installés dans Padatrad :
 - [reload_in_place](https://gitlab.com/nicolastaf/pagedjs-reload-in-place) de [Nicolas Taffin](https://polylogue.org/) ;
 - [regex_typo](https://gitlab.com/JulieBlanc/typesetting-tools) de [Julie Blanc](https://julie-blanc.fr/) ;
-- [Hyphenopoly](https://github.com/mnater/Hyphenopoly), avec un hook par Nicolas Taffin.
+- [ragadjustfr](https://github.com/yanntrividic/ragadjustfr) de Yann Trividic ;
 
 ## Contribuer
 

@@ -27,11 +27,10 @@ class replaceTranslation extends Paged.Handler {
 
     
     beforeParsed(content) {
-        console.log("replaceTranslation is not working...");
-        
+        //console.log("replaceTranslation is working...");
         const sources = content.querySelectorAll("section > *:not(." + config.targetLanguage + ")"); // all the text we must translate
         sources.forEach((source) => {
-            console.log(source);
+            // console.log(source);
             source.setAttribute("lang", config.sourceLanguage);
             addClass(source, "source");
             var target = this.getTarget(source);
@@ -52,7 +51,7 @@ class replaceTranslation extends Paged.Handler {
 
     afterPreview(pages){
         let alts = this.getAltsCssSelector(document);
-        console.log(alts);
+        //console.log(alts);
         addOnclickToAlts(alts);
         this.permuteAlts(alts);
     }

@@ -1,4 +1,11 @@
-function regexTypo(){
+/**
+ * @file Script for handling orthotypography.
+ * Originally developped by Julie Blanc, revised a bit by Yann Trividic
+ * @see https://gitlab.com/JulieBlanc/typesetting-tools
+ */
+
+
+export default function regexTypo(){
     orthotypo(document.body);
     spaces(document.body);
     exposants();

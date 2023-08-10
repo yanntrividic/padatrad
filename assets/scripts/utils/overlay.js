@@ -85,6 +85,7 @@ export default class Overlay {
 
         this.generateTranslationStatus();
 
+        // this.generateButton("btnRefresh", "Raffraîchir", () => { window.PagedPolyfill.preview(); })
         this.generateButton("btnInfo", "Infos", () => { displayModal(); })
         if (!isBackup()) this.generateButton("btnSave", "Sauvegarder", () => { savePads(); })
         if(this.extraUrl && this.extraUrlLabel) {

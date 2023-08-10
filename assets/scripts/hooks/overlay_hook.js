@@ -15,7 +15,7 @@ class OverlayHook extends Paged.Handler {
         super(chunker, polisher, caller);
     }
     beforeParsed(content) {
-        console.log("overlay is working...");
+        //console.log("overlay is working...");
 
         let overlay = new Overlay(document.body) ;
         overlay.init(); // returns a promise that we don't have to wait for

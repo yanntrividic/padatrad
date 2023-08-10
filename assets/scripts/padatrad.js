@@ -9,6 +9,7 @@ import config from "../../config.js";
 import genMeta from "./utils/meta.js"
 import { insertTag, load, getJson } from "./utils/pads.js";
 import { getZipFromArgs, loadZipIntoHtml } from "./utils/backups.js";
+import regexTypo from "./dependencies/typesetting.js";
 import "./dependencies/paged.polyfill.js";
 import "./hooks/hooks.js";
 
@@ -39,6 +40,9 @@ if(!zip) { // when there is not zip argument, we load the app
     document.querySelectorAll('meta[name="category"]')[0].setAttribute("content", "backup"); // specify it's a backup
     await loadZipIntoHtml(zip);
 }
+
+// Fix the typo a bit
+regexTypo();
 
 // Once everything was processed, we can launch PagedJS
 document.body.style.display = "block";
