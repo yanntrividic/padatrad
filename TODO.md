@@ -4,10 +4,10 @@
 
 ## Backend
 
-- [~] Intégrer les hooks
+- [X] Intégrer les hooks
     - [X] regex-typo
-    - [ ] hyphenopoly (pas aussi simple qu'il n'y paraît)
     - [X] ragadjust
+- [ ] Intégrer hyphenopoly aux typesetting options (voir `padatrad.js`)
 - [ ] Transformer `extraUrlLabel` et `extraUrl` en une liste
 - [ ] Proposer une version avec le hook FacingSections
 - [ ] Diviser les `p` en `span` pour un gestion plus fine des chunks de traduction (voir `replace-translation.js`). Est-ce pertinent ?
