@@ -1,6 +1,6 @@
 # Padatrad
 
-Padatrad permet de traduire collectivement des textes et de les éditer depuis un navigateur web. Cette webapp est totalement rédigée en JavaScript ES6. Elle s'appuie sur les [Etherpads](https://fr.wikipedia.org/wiki/Etherpad), lit les contenus en [Markdown](https://fr.wikipedia.org/wiki/Markdown), et génère la prévisualisation pour l'impression avec la bibliothèque [PagedJS](https://pagedjs.org).
+Padatrad permet de traduire collectivement des textes et de les éditer depuis un navigateur web. Cette webapp est totalement rédigée en JavaScript ES6. Elle s'appuie sur les [Etherpads](https://fr.wikipedia.org/wiki/Etherpad), lit les contenus en [Markdown](https://fr.wikipedia.org/wiki/Markdown), et gère les règles CSS pour l'impression avec la bibliothèque [PagedJS](https://pagedjs.org).
 
 ![Vue du logiciel](https://gitlab.com/editionsburnaout/padatrad/-/raw/master/screenshot.png){width=100%}
 
@@ -114,7 +114,7 @@ Toute contribution est la bienvenue. Pour vous donner une idée de ce qui va nou
 
 Ce programme a été développé et est maintenu par [Yann Trividic](https://yanntrividic.fr) pour le compte des [Éditions Burn~Août](https://editionsburnaout.fr/).
 
-Merci à Julien Taquet et à Nicolas Taffin pour l'aide apportée sur PagedJS. Et surtout, merci à toutes les personnes ayant participé aux ateliers de traduction de [_La Morale de la Xerox_](https://gitlab.com/yanntrividic/the-moral-of-the-xerox-vf) qui ont avec bonne humeur éprouvé les premières version de ce logiciel et nous ont aidé à l'améliorer.
+Merci à [Julien Taquet](https://twitter.com/John_Tax) et à Nicolas Taffin pour l'aide apportée sur PagedJS. Et surtout, merci à toutes les personnes ayant participé aux ateliers de traduction de [_La Morale de la Xerox_](https://gitlab.com/yanntrividic/the-moral-of-the-xerox-vf) qui ont avec bonne humeur éprouvé les premières version de ce logiciel et nous ont aidé à l'améliorer.
 
 ## Licence
 
