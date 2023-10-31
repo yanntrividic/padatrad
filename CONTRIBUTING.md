@@ -28,3 +28,4 @@
 - [ ] Publier un issue sur PagedJS pour les gros chunks qui font totalement ramer Firefox
 - [ ] Traduire le dépôt en anglais
 - [ ] Faire une PR sur regex-typo
+- [ ] Déployer une démo sur padatrad.editionsburnaout.fr, faire en sorte qu'elle soit pérenne.
