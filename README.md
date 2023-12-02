@@ -16,6 +16,8 @@ Si le paradigme vous intéresse plus que la traduction collective en tant que te
 
 Commencez par télécharger la dernière version de Padatrad [ici](https://gitlab.com/editionsburnaout/padatrad/-/releases). Décompressez l'archive. À partir de là, vous n'aurez besoin que d'un serveur HTTP. Celui-ci peut tourner sur votre machine en local ou être connecté à Internet. Dans les deux cas, vous n'avez aucune autre dépendance à installer pour que Padatrad puisse fonctionner correctement. Si tout est bon, alors vous pouvez ouvrir un navigateur web à l'URL de votre projet ; ça devrait déjà fonctionner.
 
+Si vous souhaitez utiliser Padatrad avec d'autres personnes, mais que vous n'avez pas de serveur HTTP relié à Internet, nous proposons aussi d'héberger gratuitement des instances de Padatrad sur [padatrad.editionsburnaout.fr](https://padatrad.editionsburnaout.fr).
+
 ### Fichier `config.js`
 
 Le fichier `config.js` vous permet de vous approprier votre instance de Padatrad. Vous pouvez renseigner un titre pour votre projet, spécifier la langue cible et la langue source de votre traduction, etc. Le texte contenu dans le champ `infoText` est affiché dans la fenêtre pop-up qui apparaît lorsqu'un·e utilisateurice clique sur le bouton `Infos` du menu latéral. Les champs `extraUrlLabel` et `extraUrl` permettent d'ajouter un bouton de votre choix dans le menu latéral.
