@@ -126,7 +126,9 @@ Ce logiciel est distribué sous la licence GNU-GPL3. Les règles de cette licenc
 
 # <a name="en"></a>Padatrad (in english!)
 
-Padatrad allows collective translation of texts and editing them from a web browser. This web app is entirely written in JavaScript ES6. It relies on [Etherpad](https://en.wikipedia.org/wiki/Etherpad), reads content in [Markdown](https://en.wikipedia.org/wiki/Markdown), and manages CSS rules for printing using the [PagedJS](https://pagedjs.org) library. The name padatrad (\pad.a.tʁad\\) stands for "pad à traduction", that is to say, pad for translation.
+Padatrad allows collective translation of texts and editing them from a web browser. This web app is entirely written in JavaScript ES6. It relies on [Etherpad](https://en.wikipedia.org/wiki/Etherpad), reads content in [Markdown](https://en.wikipedia.org/wiki/Markdown), and manages CSS rules for printing using the [PagedJS](https://pagedjs.org) library. The name Padatrad (\pad.a.tʁad\\) stands for "pad à traduction", that is to say, pad for translation[^patatras].
+
+[^patatras]: In french, the pronunciation of Padatrad is also close to "patatras" (\pa.ta.tʁa\\), which is an onomatopeia used for something that falls and crashes loudly.
 
 ![Software View](https://gitlab.com/editionsburnaout/padatrad/-/raw/master/screenshot.png){width=100%}
 
