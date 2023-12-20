@@ -244,4 +244,3 @@ Thanks to [Julien Taquet](https://twitter.com/John_Tax) and Nicolas Taffin for t
 ## License
 
 This software is distributed under the GNU-GPL3 license. The rules of this license do not require you to inform us of your use of the software, but if you do use it, [let us know](mailto:burnaout@riseup.net); it would make us very happy!
-```
