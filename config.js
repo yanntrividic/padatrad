@@ -14,8 +14,8 @@ export default {
 
     // Edit this if you want to use another JSON file to specify the pads to load,
     // it can be a relative or absolute URL
-    padsUrl: "/pads.json", 
-    backupsUrl: "/backups/backups.json", 
+    padsUrl: "pads.json", 
+    backupsUrl: "backups/backups.json", 
     
     // You can also add an external link to another app that would be coherent with your project
     // Here, this is linked to an instance of Les Cahiers du studio, de l'atelier des chercheurs
