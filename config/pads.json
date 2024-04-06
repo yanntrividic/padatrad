@@ -1,13 +1,13 @@
 [
     {
         "id": "section1",
-        "string": "Test",
+        "string": "Section 1",
         "type": "md",
         "url": "https:\/\/pad.editionsburnaout.fr\/p\/padatrad1"
     },
     {
         "id": "section2",
-        "string": "Etla",
+        "string": "Section 2",
         "type": "md",
         "url": "https:\/\/pad.editionsburnaout.fr\/p\/padatrad2"
     },

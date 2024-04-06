@@ -1,68 +1,251 @@
 <?php
 // Function to read JSON file
 function readJSON($filename) {
-    $data = file_get_contents($filename);
-    return json_decode($data, true);
+  $json = file_get_contents($filename);
+  return json_decode($json, true);
 }
 
 // Function to write JSON file
 function writeJSON($filename, $data) {
-    $json = json_encode($data, JSON_PRETTY_PRINT);
-    file_put_contents($filename, $json);
+  $json = json_encode($data, JSON_PRETTY_PRINT);
+  file_put_contents($filename, $json);
 }
 
 // File containing JSON data
-$jsonFile = 'config.json'; // Change this to your JSON file name
+$padsFile = 'pads.json';
+$configFile = 'config.json'; // Change this to your JSON file name
 
 // Read initial JSON data
-$data = readJSON($jsonFile);
+$pads = readJSON($padsFile);
+$config = readJSON($configFile);
+
+$newPads = [];
 
 // Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+  if ( $_POST['submit1']) {
+    foreach ($_POST as $key => $value) {
+      // Check if field corresponds to pad data
+      if (strpos($key, '_') !== false) {
+        // Extract pad ID and field name
+        list($id, $field) = explode('_', $key, 2);
+        // Update corresponding field in pads array
+        $newPads[$field][$id] = $value;
+      }
+    }
+
+    // Write updated JSON data back to file
+    writeJSON($padsFile, array_values($newPads)); // Convert associative array to indexed array
+  }
+
+  if ( $_POST['submit2']) {
+    $newPads = $pads;
+    foreach ($_POST as $key => $value) {
+      if( $key != "submit2") $newPads["new"][$key] = $value;
+    }
+
+    // Write updated JSON data back to file
+    writeJSON($jsonFile, array_values($newPads)); // Convert associative array to indexed array
+  }
+
+  if ($_POST['submit3']) {
     // Update JSON data with form inputs
     foreach ($_POST as $key => $value) {
         // Check if field exists in JSON data
-        if (array_key_exists($key, $data)) {
-            $data[$key] = $value;
+        if (array_key_exists($key, $config)) {
+            $config[$key] = $value;
         }
     }
 
     // Write updated JSON data back to file
-    writeJSON($jsonFile, $data);
+    writeJSON($configFile, $config); // Convert associative array to indexed array
+  }
 
-    // Redirect to prevent form resubmission
-    header("Location: ".$_SERVER['PHP_SELF']);
-    exit;
+  // Redirect to prevent form resubmission
+  header("Location: ".$_SERVER['PHP_SELF']);
+  exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier la configuration</title>
+    <title>Padatrad | Configuration</title>
     <link href="../assets/styles/book.css" rel="stylesheet">
-</head>
-<body>
-    <h2>Modifier la configuration de Padatrad</h2>
-    <form method="post">
-        <h3>Généralités</h3>
-        <label>Titre : <input type="text" name="title" value="<?php echo $data['title']; ?>"></label><br>
-        <label>Texte d'information : <textarea name="infoText"><?php echo $data['infoText']; ?></textarea></label><br>
-        <label>Langue source : <input type="text" name="sourceLanguage" value="<?php echo $data['sourceLanguage']; ?>"></label><br>
-        <label>Langue cible : <input type="text" name="targetLanguage" value="<?php echo $data['targetLanguage']; ?>"></label><br>
-        <label>Langue de l'application : <input type="text" name="appLanguage" value="<?php echo $data['appLanguage']; ?>"></label><br>
-        <label>Label de l'URL additionnelle : <input type="text" name="extraUrlLabel" value="<?php echo $data['extraUrlLabel']; ?>"></label><br>
-        <label>Lien de URL additionnelle : <input type="text" name="extraUrl" value="<?php echo $data['extraUrl']; ?>"></label><br>
-        <label>Typesetting (extension) : <input type="checkbox" name="typesetting" <?php if ($data['typesetting']) echo 'checked'; ?>></label><br>
-        <h3>Médadonnées</h3>
-        <label>Auteurices : <input type="text" name="author" value="<?php echo $data['author']; ?>"></label><br>
-        <label>Description : <textarea name="description"><?php echo $data['description']; ?></textarea></label><br>
-        <label>Mots-clés : <input type="text" name="keywords" value="<?php echo $data['keywords']; ?>"></label><br>
-        <label>Date : <input type="text" name="date" value="<?php echo $data['date']; ?>"></label><br>
-        <label>Licence : <input type="text" name="licence" value="<?php echo $data['licence']; ?>"></label><br>
-        <input type="submit" value="Sauvegarder">
+  </head>
+  <body>
+    <h1>Pads</h1>
+    <h2>Modifier les pads existants</h2>
+    <form method="post" id="form_1"> <?php foreach ($pads as $pad): ?> <div class="container">
+        <div class="draggable" draggable="true">
+          <legend> <?php echo $pad['id']; ?> </legend>
+          <label>ID : <input type="text" name="id_<?php echo $pad['id']; ?>" value="<?php echo $pad['id']; ?>">
+          </label>
+          <br>
+          <label>Label : <input type="text" name="string_<?php echo $pad['id']; ?>" value="<?php echo $pad['string']; ?>">
+          </label>
+          <br>
+          <label>Type : <input type="radio" name="type_<?php echo $pad['id']; ?>" value="md" <?php if ($pad['type'] == 'md') echo 'checked'; ?>> Markdown <input type="radio" name="type_<?php echo $pad['id']; ?>" value="css" <?php if ($pad['type'] == 'css') echo 'checked'; ?>> CSS </label>
+          <br>
+          <label>URL : <input type="text" name="url_<?php echo $pad['id']; ?>" value="<?php echo $pad['url']; ?>">
+          </label>
+          <br>
+        </div>
+      </div> <?php endforeach; ?> <label>
+        <input type="submit" name="submit1" value="Sauvegarder">
+      </label>
     </form>
-</body>
+    <h2>Ajouter un nouveau pad</h2>
+    <form method="post" id="form_2">
+      <label>ID : <input type="text" name="id">
+      </label>
+      <br>
+      <label>Label : <input type="text" name="string">
+      </label>
+      <br>
+      <label>Type : <input type="radio" name="type" value="md" checked> Markdown <input type="radio" name="type" value="css"> CSS </label>
+      <br>
+      <label>URL : <input type="text" name="url">
+      </label>
+      <br>
+      <input type="submit" name="submit2" value="Ajouter">
+    </form>
+
+    <hr>
+
+    <h1>Configuration de Padatrad</h1>
+    <form method="post">
+        <h2>Généralités</h2>
+        <label>Titre : <input type="text" name="title" value="<?php echo $config['title']; ?>"></label><br>
+        <label>Texte d'information : <textarea name="infoText"><?php echo $config['infoText']; ?></textarea></label><br>
+        <label>Langue source : <input type="text" name="sourceLanguage" value="<?php echo $config['sourceLanguage']; ?>"></label><br>
+        <label>Langue cible : <input type="text" name="targetLanguage" value="<?php echo $config['targetLanguage']; ?>"></label><br>
+        <label>Langue de l'application : <input type="text" name="appLanguage" value="<?php echo $config['appLanguage']; ?>"></label><br>
+        <label>Label de l'URL additionnelle : <input type="text" name="extraUrlLabel" value="<?php echo $config['extraUrlLabel']; ?>"></label><br>
+        <label>Lien de URL additionnelle : <input type="text" name="extraUrl" value="<?php echo $config['extraUrl']; ?>"></label><br>
+        <label>Typesetting (extension) : <input type="checkbox" name="typesetting" <?php if ($config['typesetting']) echo 'checked'; ?>></label><br>
+        <h2>Médadonnées</h2>
+        <label>Auteurices : <input type="text" name="author" value="<?php echo $config['author']; ?>"></label><br>
+        <label>Description : <textarea name="description"><?php echo $config['description']; ?></textarea></label><br>
+        <label>Mots-clés : <input type="text" name="keywords" value="<?php echo $config['keywords']; ?>"></label><br>
+        <label>Date : <input type="text" name="date" value="<?php echo $config['date']; ?>"></label><br>
+        <label>Licence : <input type="text" name="licence" value="<?php echo $config['licence']; ?>"></label><br>
+        <input type="submit" name="submit3" value="Sauvegarder">
+    </form>
+    <style>
+      body {
+        margin: 10px;
+      }
+
+      .draggable {
+        cursor: move;
+        margin: 10px 0;
+        padding: 5px;
+        border-top: solid 1.5px;
+        border-bottom: solid 1.5px;
+        background-color: rgba(255, 255, 255, 0.7)
+      }
+
+      input {
+        margin: 2px;
+      }
+
+      input[type="text"] {
+        width: 500px;
+        max-width: 80%;
+      }
+
+      textarea {
+        display:block;
+        width: 500px;
+        max-width: 80%;
+        height: 100px;
+      }
+
+      hr {
+        margin: 80px 0;
+      }
+
+      .draggable.dragging {
+        opacity: .5;
+      }
+
+      legend {
+        font-weight: bold;
+        margin-bottom: 2px;
+      }
+
+      .closeButton {
+        right: 10px;
+        position: absolute;
+      }
+
+      input[name="submit2"], input[name="submit3"] {
+        margin-top: 10px;
+      }
+    </style>
+    <script>
+      const draggables = document.querySelectorAll('.draggable')
+      const containers = document.querySelectorAll('.container')
+      draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', () => {
+          draggable.classList.add('dragging')
+        })
+        draggable.addEventListener('dragend', () => {
+          draggable.classList.remove('dragging')
+        })
+      })
+      containers.forEach(container => {
+        container.addEventListener('dragover', e => {
+          e.preventDefault()
+          const afterElement = getDragAfterElement(container, e.clientY)
+          const draggable = document.querySelector('.dragging')
+          if (afterElement == null) {
+            container.appendChild(draggable)
+          } else {
+            container.insertBefore(draggable, afterElement)
+          }
+        })
+      })
+
+      function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')]
+        return draggableElements.reduce((closest, child) => {
+          const box = child.getBoundingClientRect()
+          const offset = y - box.top - box.height / 2
+          if (offset < 0 && offset > closest.offset) {
+            return {
+              offset: offset,
+              element: child
+            }
+          } else {
+            return closest
+          }
+        }, {
+          offset: Number.NEGATIVE_INFINITY
+        }).element
+      }
+    </script>
+    <script>
+      let btn = document.createElement("button")
+      btn.innerHTML = "&#x274C;";
+      btn.classList = ["closeButton"];
+      let legends = document.getElementsByTagName("legend");
+      Array.from(legends).forEach(function(legend) {
+        legend.insertAdjacentElement("beforeend", btn.cloneNode(true))
+      });
+      let entries = document.querySelectorAll("code");
+      entries.forEach(function(entry) {
+        entry.insertAdjacentElement("beforeend", btn.cloneNode(true))
+      });
+      document.querySelectorAll(".closeButton").forEach(closeBtn => {
+        closeBtn.addEventListener("click", removeElement);
+      })
+
+      function removeElement(event) {
+        event.target.parentElement.parentElement.remove();
+      }
+    </script>
+  </body>
 </html>
