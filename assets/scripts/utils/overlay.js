@@ -7,7 +7,9 @@ import { getTranslationPercentage, getAcceptedTranslationPercentage } from "../h
 import "./saver.js";
 import { isBackup, getDate, getZipFromArgs, getParticipantsAsList } from "./backups.js";
 import { getJson } from "./pads.js";
-import config from "../../../config.js"
+
+// Get config data
+const config = await (await fetch('config/config.json')).json();
 
 export default class Overlay {
     constructor(parent) {
@@ -27,7 +29,7 @@ export default class Overlay {
         this.modal = document.createElement("div");
         this.modal.setAttribute("data-id", "modal")
         this.modal.style = "position: fixed; display:none;"; // otherwise pagedjs removes the position attribute, and we don't want it shown by default
-        
+
         this.title ; // title that will appear in the overlay
         this.infoText ; // text that will be displayed in the modal
         this.extraUrlLabel ;
@@ -73,7 +75,7 @@ export default class Overlay {
         this.parent.appendChild(this.miniPannel);
     }
 
-    generatePannel() {        
+    generatePannel() {
         var reduce = document.createElement("div");
         reduce.setAttribute("class", "reduce");
         reduce.innerHTML = "_";
@@ -105,13 +107,13 @@ export default class Overlay {
     generateTranslationStatus(){
         var highlight = document.createElement("div");
         highlight.setAttribute("id", "highlight");
-        
+
         var inputHighlight = document.createElement("input");
         inputHighlight.setAttribute("type", "checkbox");
         inputHighlight.setAttribute("id", "cBoxHighlight");
         inputHighlight.checked = true;
         inputHighlight.addEventListener("click", switchHighlight);
-        
+
         var percentage = document.createElement("label");
         percentage.setAttribute("for", "cBoxHighlight");
         let translationPercentage = `<span style="background-color:var(--color-background-target);">` + (getTranslationPercentage()*100).toFixed(1) + "&#x202F;%" + "</span>";
@@ -156,7 +158,7 @@ export default class Overlay {
             document.querySelectorAll(`[data-id="modal"]`)[0].style.display = "none";
         }
         modalContent.appendChild(close);
-        
+
         // window.onclick = function(event) {
         //     if (event.target == this.modal) {
         //         document.querySelectorAll(`[data-id="modal"]`)[0].style.display = "none";
@@ -206,7 +208,7 @@ export default class Overlay {
     generateParticipants(){
         this.pannel.append(getParticipantsAsList(getZipFromArgs()));
     }
-    
+
 }
 
 /**
@@ -215,14 +217,14 @@ export default class Overlay {
 
 /**
  * Changes the color of a section
- * @param {String} id 
- * @param {String} color 
+ * @param {String} id
+ * @param {String} color
  */
 function changeColor(event, color) {
     let id = event.target.id.split("Overlay")[0];
     document.querySelectorAll(("[data-id='"+id+"']")).forEach(element => {
         element.style.color = color;
-    });   
+    });
 }
 
 function changeColorOver(event) {
@@ -235,7 +237,7 @@ function changeColorOut(event) {
 
 /**
  * Function linked to a checkbox to highlight translation or hide the highlighting
- * @param {*} event 
+ * @param {*} event
  */
 function switchHighlight(event){
     var checkbox = event.target;

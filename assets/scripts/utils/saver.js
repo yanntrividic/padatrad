@@ -4,7 +4,9 @@ import "../dependencies/jszip.js";
 import "../dependencies/jszip-utils.min.js";
 import { saveAs } from '../dependencies/FileSaver.min.js';
 import { export_url_suffix } from "./pads.js";
-import config from "../../../config.js";
+
+// Get config data
+const config = await (await fetch('config/config.json')).json();
 
 /**
  * Saves the pads' contents as raw text, zips it and downloads it.
@@ -15,16 +17,16 @@ window.savePads = async function(){
     const pads = await response.json();
 
     var zip = new JSZip();
-    
+
     pads.forEach((pad) => {
             var blob = fetch(pad.url + export_url_suffix).then(resp => resp.blob());
             zip.file(pad.id + "." + pad.type, blob);
         });
-    
+
     var date = new Date();
-    
+
     const timestamp = date.getFullYear() + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours() ).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2);
-    
+
     const title  = document.title.normalize('NFKD') // split accented characters into their base characters and diacritical marks
     .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
     .trim() // trim leading or trailing whitespace

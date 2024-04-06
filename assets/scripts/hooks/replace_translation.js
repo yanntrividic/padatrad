@@ -8,7 +8,8 @@
  * @see https://gitlab.coko.foundation/pagedjs/templaters/forensic
  */
 
-import config from "../../../config.js"
+// Get config data
+const config = await (await fetch('config/config.json')).json();
 
 // TODO: at the moment, the script has a strong limitation.
 //       It only allows one chunk of translation per paragraph.
@@ -25,7 +26,7 @@ class replaceTranslation extends Paged.Handler {
         super(chunker, polisher, caller);
     }
 
-    
+
     beforeParsed(content) {
         //console.log("replaceTranslation is working...");
         const sources = content.querySelectorAll("section > *:not(." + config.targetLanguage + ")"); // all the text we must translate
@@ -107,7 +108,7 @@ class replaceTranslation extends Paged.Handler {
     getLength(element){
         return element.innerText.length;
     }
-    
+
 }
 Paged.registerHandlers(replaceTranslation);
 
@@ -115,7 +116,7 @@ Paged.registerHandlers(replaceTranslation);
 const MAX_ALTS = 10; // number of alternates allowed in alt(\d+)?
 
 /**
- * Adds a .random class to the elements and an onlick attribute for the permuteAlt function 
+ * Adds a .random class to the elements and an onlick attribute for the permuteAlt function
  * @param {*} alts elements that can have alternative translations
  */
 function addOnclickToAlts(alts){

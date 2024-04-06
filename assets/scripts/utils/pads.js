@@ -1,7 +1,7 @@
 /**
  * @file Handles pads to use them all over the project.
  * The only modification needed to add a pad is to add an entry to `pads.json`
- * 
+ *
  * @author Yann Trividic
  * @license GPLv3
  */
@@ -25,7 +25,7 @@ export function insertTag(pad){
 /**
  * Inserts two elements in the DOM: a section that will hold the final HTML code,
  * and a temporary elemnent that will store the Markdown data.
- * @param {Dict} pad 
+ * @param {Dict} pad
  */
 function insertMdTags(pad) {
     // Generate data-md element
@@ -33,7 +33,7 @@ function insertMdTags(pad) {
     data.setAttribute("id", pad.id + data_suffix);
     data.setAttribute("data-md", pad.url + export_url_suffix);
     document.body.appendChild(data);
-    
+
     // Generate section
     var section = document.createElement("section");
     section.setAttribute("id", pad.id);
@@ -42,7 +42,7 @@ function insertMdTags(pad) {
 
 /**
  * Loads the CSS contained in a pad into the DOM.
- * @param {Dict} pad 
+ * @param {Dict} pad
  */
 function insertCssTag(pad) {
     // Generate link element

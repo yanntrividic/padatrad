@@ -1,0 +1,20 @@
+[
+    {
+        "id": "section1",
+        "string": "Test",
+        "type": "md",
+        "url": "https:\/\/pad.editionsburnaout.fr\/p\/padatrad1"
+    },
+    {
+        "id": "section2",
+        "string": "Etla",
+        "type": "md",
+        "url": "https:\/\/pad.editionsburnaout.fr\/p\/padatrad2"
+    },
+    {
+        "id": "css",
+        "string": "Style",
+        "type": "css",
+        "url": "https:\/\/pad.editionsburnaout.fr\/p\/padatradstyle"
+    }
+]

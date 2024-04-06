@@ -1,5 +1,7 @@
 import ragadjust from "../dependencies/ragadjust.js";
-import config from "../../../config.js"
+
+// Get config data
+const config = await (await fetch('config/config.json')).json();
 
 class ragadjustHandler extends Paged.Handler {
 	constructor(chunker, polisher, caller) {
