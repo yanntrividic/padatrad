@@ -40,7 +40,7 @@ class replaceTranslation extends Paged.Handler {
             if (target) { // if the following element is a target element
                 target.setAttribute("lang", config.targetLanguage);
                 addClass(target, "target");
-                target.classList.remove(config.targetLanguage);
+                // target.classList.remove(config.targetLanguage);
                 if (target.innerText != ""){ // if a translation is not empty
                     if (target.classList.contains("accepted")) acceptedTranslationLength += sLength ;
                     translationLength += sLength ; // the amount of translated chars is added to the translation's length
@@ -71,7 +71,7 @@ class replaceTranslation extends Paged.Handler {
             // End of section
             return ;
         }
-        if(target &&    target.hasAttribute("class") && target.classList.contains(config.targetLanguage)){
+        if(target && target.hasAttribute("class") && target.classList.contains(config.targetLanguage)){
             return target;
         } else {
             // console.error("Translation element is missing after \"" + source.innerText.slice(0, 10) + "...\"");

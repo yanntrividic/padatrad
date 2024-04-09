@@ -1,8 +1,8 @@
 {
     "title": "Padatrad",
-    "infoText": "Cette page web est une d\\u00e9mo de <i>Padatrad<\\\/i>, un logiciel libre con\\u00e7u pour traduire collectivement et simplement un texte, tout en l\\u2019\\u00e9ditant et en le mettant en page. Le texte est en <span style=\\\"background-color:var(--color-background-accepted);\\\">vert<\\\/span> lorsque la traduction a \\u00e9t\\u00e9 accept\\u00e9e, en <span style=\\\"background-color:var(--color-background-target);\\\">jaune<\\\/span> quand elle n\\u2019est encore qu\\u2019\\u00e0 l\\u2019\\u00e9tat d\\u2019\\u00e9bauche, et en <span style=\\\"background-color:var(--color-background-alt);\\\">rouge<\\\/span> quand des variantes existent.<\\\/p><p><a href=\\\"https:\\\/\\\/gitlab.com\\\/editionsburnaout\\\/padatrad\\\">Le code source est disponible l\\u00e0<\\\/a>.",
+    "infoText": "Blablabla",
     "sourceLanguage": "en",
-    "targetLanguage": "fr",
+    "targetLanguage": "target",
     "appLanguage": "fr",
     "padsUrl": "config\/pads.json",
     "backupsUrl": "backups\/backups.json",
