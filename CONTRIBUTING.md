@@ -13,10 +13,11 @@
     - [X] ragadjust
 - [ ] Proposer une version avec le hook FacingSections
 - [ ] Diviser les `p` en `span` pour un gestion plus fine des chunks de traduction (voir `replace-translation.js`). Est-ce pertinent ?
-- [ ] Associer un tooltip aux `.target` qui contient le texte source (augmenter `replace-translation.js`)
+- [x] Associer un tooltip aux `.target` qui contient le texte source (augmenter `replace-translation.js`)
 - [ ] Modifications en temps-réel plutôt qu'avoir à refresh : faire des recherches sur une possible API pour changer le contenu des pads à distance, en utilisant notamment la propriété `contentEditable`. (Voir la fonction `setText` [ici](https://etherpad.org/doc/v1.8.4/#index_what_can_i_do_with_this_api)). ;
 - [ ] Ou alors, au lieu du temps-réel, avoir un bouton "refresh" qui rechargerait juste les pads et la preview
-- [ ] Régler le but concernant le surlignage
+- [x] Régler le bug concernant le surlignage
+- [ ] Ajouter le support pour le plugin [`ep_markdown`](https://npmjs.org/package/ep_markdown)
 
 ## Cosmétique
 

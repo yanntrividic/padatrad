@@ -44,6 +44,7 @@ class replaceTranslation extends Paged.Handler {
                 if (target.innerText != ""){ // if a translation is not empty
                     if (target.classList.contains("accepted")) acceptedTranslationLength += sLength ;
                     translationLength += sLength ; // the amount of translated chars is added to the translation's length
+                    target.title = source.innerText;
                     source.remove();
                 } else target.remove();
             }

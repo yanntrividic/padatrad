@@ -29,7 +29,7 @@
 
 [data-id="overlay"] a:hover {
     font-weight: bold;
-    color: var(--color-hover);
+    color: var(--color-hover) !important;
     cursor:pointer;
 }
 
@@ -108,9 +108,13 @@ button {
     margin: .1em 0;
 }
 
+.mdAnchor {
+    margin-left: .2em;
+}
+
 /* Horizontal format */
 
-@media only screen and (orientation: landscape),  pagedjs-ignore { 
+@media only screen and (orientation: landscape),  pagedjs-ignore {
     [data-id="overlay"], [data-id="miniOverlay"]{
         width:max-content;
         top:1em;
@@ -128,7 +132,7 @@ button {
 
 /* Vertical format */
 
-@media only screen and (orientation: portrait),  pagedjs-ignore { 
+@media only screen and (orientation: portrait),  pagedjs-ignore {
     [data-id="overlay"], [data-id="miniOverlay"]{
         bottom: 0;
         left: 0;
@@ -148,11 +152,11 @@ button {
         justify-content: space-around;
         flex-direction: row;
     }
-    
+
     [data-id="overlay"] {
         width: 94vw !important;
     }
-    
+
     [data-id="overlay"] li, [data-id="overlay"] ul {
         margin: 0;
     }

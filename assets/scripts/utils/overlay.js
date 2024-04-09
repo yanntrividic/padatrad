@@ -195,6 +195,7 @@ export default class Overlay {
         this.links.md.forEach(md => {
             let e = document.createElement("li");
             e.append(md);
+            addAnchor(e, md);
             l.append(e);
         });
         this.links.css.forEach(css => {
@@ -223,7 +224,9 @@ export default class Overlay {
 function changeColor(event, color) {
     let id = event.target.id.split("Overlay")[0];
     document.querySelectorAll(("[data-id='"+id+"']")).forEach(element => {
-        element.style.color = color;
+        Array.from(element.children).forEach((child) => {
+            child.style.setProperty('color', color, 'important');
+        })
     });
 }
 
@@ -268,4 +271,12 @@ function displayModal(modal){
         document.querySelectorAll(`[data-id="modal"]`)[0].style.display = "block";
     } else document.querySelectorAll(`[data-id="modal"]`)[0].style.display = "none";
     localStorage.setItem("first-visit", "false");
+}
+
+function addAnchor(entry, md) {
+    let anchor = document.createElement("a");
+    anchor.classList = ["mdAnchor"];
+    anchor.href = "#" + md.id.split("Overlay")[0];
+    anchor.innerText = "\u2198";
+    entry.append(anchor);
 }

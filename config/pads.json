@@ -1,20 +1,20 @@
 [
     {
         "id": "section1",
-        "string": "Section 1",
+        "string": "Texte principal",
         "type": "md",
-        "url": "https:\/\/pad.editionsburnaout.fr\/p\/padatrad1"
+        "url": "https:\/\/pad.editionsburnaout.fr\/p\/demo_1"
     },
     {
         "id": "section2",
-        "string": "Section 2",
+        "string": "Colophon",
         "type": "md",
-        "url": "https:\/\/pad.editionsburnaout.fr\/p\/padatrad2"
+        "url": "https:\/\/pad.editionsburnaout.fr\/p\/demo_2"
     },
     {
         "id": "css",
         "string": "Style",
         "type": "css",
-        "url": "https:\/\/pad.editionsburnaout.fr\/p\/padatradstyle"
+        "url": "https:\/\/pad.editionsburnaout.fr\/p\/demo_style"
     }
 ]

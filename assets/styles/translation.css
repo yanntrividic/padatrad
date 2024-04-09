@@ -5,15 +5,15 @@
 }
 
 .target {
-    background-color: var(--color-background-target);
+    background-color: var(--color-background-target) !important;
 }
 
 .target.accepted {
-    background-color: var(--color-background-accepted);
+    background-color: var(--color-background-accepted) !important;
 }
 
 .random {
-    background-color: var(--color-background-alt);
+    background-color: var(--color-background-alt) !important;
 }
 
 .random:hover {
