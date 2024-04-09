@@ -17,7 +17,7 @@
 - [ ] Modifications en temps-réel plutôt qu'avoir à refresh : faire des recherches sur une possible API pour changer le contenu des pads à distance, en utilisant notamment la propriété `contentEditable`. (Voir la fonction `setText` [ici](https://etherpad.org/doc/v1.8.4/#index_what_can_i_do_with_this_api)). ;
 - [ ] Ou alors, au lieu du temps-réel, avoir un bouton "refresh" qui rechargerait juste les pads et la preview
 - [x] Régler le bug concernant le surlignage
-- [ ] Ajouter le support pour le plugin [`ep_markdown`](https://npmjs.org/package/ep_markdown)
+- [ ] Ajouter le support pour le plugin [`ep_markdown`](https://npmjs.org/package/ep_markdown) quand mon [`issue`](https://github.com/ether/ep_markdown/issues/139) aura été fermée.
 
 ## Cosmétique
 

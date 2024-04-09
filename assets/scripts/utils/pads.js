@@ -7,9 +7,12 @@
  */
 
 import convert from "./converter.js"
-
 export const data_suffix = "_data";
-export const export_url_suffix = "/export/txt";
+
+// For when this issue is no more: https://github.com/ether/ep_markdown/issues/139
+// const config = await getJson("config/config.json");
+// export const export_url_suffix = "/export/" + (config.ep_markdown ? "markdown" : "txt") ;
+export const export_url_suffix = "/export/txt"
 
 export function insertTag(pad){
     if(pad.type == "md") {

@@ -173,4 +173,8 @@ button {
     .reduce, .close, button, [data-id="modal"], [data-id="overlay"], [data-id="miniOverlay"]{
         border-width: 2px;
     }
+
+    .mdAnchor {
+        display: none;
+    }
 }
