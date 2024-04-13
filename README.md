@@ -8,9 +8,11 @@ Padatrad permet de traduire collectivement des textes et de les éditer depuis u
 
 ## Description
 
-Ce projet s'intéresse au paradigme _fetch, convert & publish_ en mettant un accent sur la traduction collective. Étant donné qu'il n'existait à notre connaissance aucun logiciel libre facilitant l'édition de traductions à plusieurs, nous l'avons fait nous-même. Dans l'idée, nous avons cherché à faire une application qui serait la plus légère possible et la plus facile à installer. Padatrad est écrit en JS vanille, pèse moins d'un mégaoctet, et est entièrement portable (à l'exception des instances d'Etherpad). Vous pouvez tester le logiciel dans une [démo en ligne](https://padatrad.editionsburnaout.fr/demo/).
+Ce projet s'intéresse au paradigme _fetch, convert & publish_ en mettant un accent sur la traduction collective. Étant donné qu'il n'existait à notre connaissance aucun logiciel libre facilitant l'édition de traductions à plusieurs, nous l'avons fait nous-même. Dans l'idée, nous avons cherché à faire une application qui serait la plus légère possible et la plus facile à installer. Padatrad est écrit en JS vanille, pèse moins d'un mégaoctet, et est entièrement portable (à l'exception des instances d'Etherpad).
 
 Si le paradigme vous intéresse plus que la traduction collective en tant que telle, peut-être trouverez-vous votre bonheur ici : [pad2print](https://gitlab.com/Luuse/pad2print) de Luuse, [Ethertoff](http://osp.kitchen/tools/ethertoff/) ou [Ether2html](http://osp.kitchen/tools/ether2html/) d’Open Source Publishing, [Collabprint](https://gitlab.com/quentinjuhel/collabprint) de Quentin Juhel, [Octomode](https://git.vvvvvvaria.org/varia/octomode) de Varia, [Libreto](https://libreto.net/) de Pierre Tandille, ou encore [Pink my pad!](https://pinkmypad.net/) de Nicolas Sauret[^julienb].
+
+Et si vous souhaitez tester Padatrad en ligne, une démo est disponible [ici](https://padatrad.editionsburnaout.fr/demo/).
 
 [^julienb]: https://www.accentgrave.net/log/.
 
@@ -40,7 +42,7 @@ Le fichier `config/pads.json` contient les informations permettant de spécifier
 
 Une liste des CHATONS ayant déployé une instance publique d'Etherpad est disponible [ici](https://wiki.chatons.org/doku.php/services/bureautique_en_ligne/etherpad).
 
-> **Attention :** Veillez à n'utiliser qu'un pad par serveur, autrement les serveurs concernés croiront que vous essayez de les DDOS et bloqueront vos requêtes. Ce comportement est dû au paramètre [`importExportRateLimiting`](https://github.com/ether/etherpad-lite/blob/06d7d12fbd6570a73b0bfc972ec59e6667d03cd5/settings.json.template#L573) de la configuration d'Etherpad.
+> **Attention :** Veillez à n'utiliser qu'un pad par serveur, autrement les serveurs concernés croiront que vous essayez de les DDOS et bloqueront vos requêtes. Ce comportement est dû au paramétrage de [`importExportRateLimiting`](https://github.com/ether/etherpad-lite/blob/06d7d12fbd6570a73b0bfc972ec59e6667d03cd5/settings.json.template#L573) de la configuration d'Etherpad.
 
 ## Usage
 
@@ -87,7 +89,6 @@ Si vous souhaitez ne pas effectuer de tirage aléatoire dans la prévisualisatio
 ```
 
 > Nous avons rajouté à markdown-it les extensions [markdown-it-attrs](https://www.npmjs.com/package/) ainsi que [markdown-it-bracketed-spans](https://www.npmjs.com/package/markdown-it-bracketed-spans) qui permettent aux utilisateurices une latitude importante pour remplir de nombreux besoins en termes de mise en page et de sémantisation.
-
 
 ### Sauvegarde et backups
 
