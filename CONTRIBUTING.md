@@ -33,5 +33,5 @@
 - [ ] Traduire le dépôt en anglais
 - [ ] Faire une PR sur regex-typo
 - [ ] Déployer une démo sur padatrad.editionsburnaout.fr, faire en sorte qu'elle soit pérenne
-- [ ] Mettre à jour la documentation concernant la configuration
-- [ ] Mettre à jour la documentation en parlant du [importExportRateLimiting](https://github.com/ether/etherpad-lite/blob/06d7d12fbd6570a73b0bfc972ec59e6667d03cd5/settings.json.template#L573).
+- [X] Mettre à jour la documentation concernant la configuration
+- [X] Mettre à jour la documentation en parlant du [importExportRateLimiting](https://github.com/ether/etherpad-lite/blob/06d7d12fbd6570a73b0bfc972ec59e6667d03cd5/settings.json.template#L573).

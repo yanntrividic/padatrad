@@ -8,6 +8,10 @@
     background-color: var(--color-background-target) !important;
 }
 
+.target:hover {
+    cursor: help;
+}
+
 .target.accepted {
     background-color: var(--color-background-accepted) !important;
 }

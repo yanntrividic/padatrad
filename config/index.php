@@ -80,15 +80,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form method="post" id="form_1"> <?php foreach ($pads as $pad): ?> <div class="container">
         <div class="draggable" draggable="true">
           <legend> <?php echo $pad['id']; ?> </legend>
-          <label>ID : <input type="text" name="id_<?php echo $pad['id']; ?>" value="<?php echo $pad['id']; ?>">
+          <label>ID : <input type="text" name="id_<?php echo $pad['id']; ?>" placeholder="maSection" value="<?php echo $pad['id']; ?>">
           </label>
           <br>
-          <label>Label : <input type="text" name="string_<?php echo $pad['id']; ?>" value="<?php echo $pad['string']; ?>">
+          <label>Label : <input type="text" name="string_<?php echo $pad['id']; ?>" placeholder="Ma section" value="<?php echo $pad['string']; ?>">
           </label>
           <br>
           <label>Type : <input type="radio" name="type_<?php echo $pad['id']; ?>" value="md" <?php if ($pad['type'] == 'md') echo 'checked'; ?>> Markdown <input type="radio" name="type_<?php echo $pad['id']; ?>" value="css" <?php if ($pad['type'] == 'css') echo 'checked'; ?>> CSS </label>
           <br>
-          <label>URL : <input type="text" name="url_<?php echo $pad['id']; ?>" value="<?php echo $pad['url']; ?>">
+          <label>URL : <input type="text" name="url_<?php echo $pad['id']; ?>" placeholder="https://framapad.org/semestriel/p/maSection" value="<?php echo $pad['url']; ?>">
           </label>
           <br>
         </div>
@@ -98,15 +98,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </form>
     <h2>Ajouter un nouveau pad</h2>
     <form method="post" id="form_2">
-      <label>ID : <input type="text" name="id">
+      <label>ID : <input type="text" name="id" placeholder="maSection">
       </label>
       <br>
-      <label>Label : <input type="text" name="string">
+      <label>Label : <input type="text" name="string" placeholder="Ma section">
       </label>
       <br>
       <label>Type : <input type="radio" name="type" value="md" checked> Markdown <input type="radio" name="type" value="css"> CSS </label>
       <br>
-      <label>URL : <input type="text" name="url">
+      <label>URL : <input type="text" name="url" placeholder="https://framapad.org/semestriel/p/maSection">
       </label>
       <br>
       <input type="submit" name="submit2" value="Ajouter">
@@ -119,11 +119,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>Généralités</h2>
         <label>Titre : <input type="text" name="title" value="<?php echo $config['title']; ?>"></label><br>
         <label>Texte d'information : <textarea name="infoText"><?php echo $config['infoText']; ?></textarea></label><br>
-        <label>Langue source : <input type="text" name="sourceLanguage" value="<?php echo $config['sourceLanguage']; ?>"></label><br>
-        <label>Langue cible : <input type="text" name="targetLanguage" value="<?php echo $config['targetLanguage']; ?>"></label><br>
-        <label>Langue de l'application : <input type="text" name="appLanguage" value="<?php echo $config['appLanguage']; ?>"></label><br>
-        <label>Label de l'URL additionnelle : <input type="text" name="extraUrlLabel" value="<?php echo $config['extraUrlLabel']; ?>"></label><br>
-        <label>Lien de URL additionnelle : <input type="text" name="extraUrl" value="<?php echo $config['extraUrl']; ?>"></label><br>
+        <label>Langue source : <input type="text" name="sourceLanguage" placeholder="en" value="<?php echo $config['sourceLanguage']; ?>"></label><br>
+        <label>Langue cible : <input type="text" name="targetLanguage" placeholder="fr" value="<?php echo $config['targetLanguage']; ?>"></label><br>
+        <!-- <label>Langue de l'application : <input type="text" name="appLanguage" value="<?php echo $config['appLanguage']; ?>"></label><br> -->
+        <label>Label de l'URL additionnelle : <input type="text" name="extraUrlLabel" placeholder="Mon super lien" value="<?php echo $config['extraUrlLabel']; ?>"></label><br>
+        <label>Lien de URL additionnelle : <input type="text" name="extraUrl" placeholder="https://monsuperlien.fr" value="<?php echo $config['extraUrl']; ?>"></label><br>
         <label>Typesetting (extension) : <input type="checkbox" name="typesetting" <?php if ($config['typesetting']) echo 'checked'; ?>></label><br>
         <h2>Médadonnées</h2>
         <label>Auteurices : <input type="text" name="author" value="<?php echo $config['author']; ?>"></label><br>

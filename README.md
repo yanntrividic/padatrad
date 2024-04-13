@@ -8,7 +8,7 @@ Padatrad permet de traduire collectivement des textes et de les éditer depuis u
 
 ## Description
 
-Ce projet s'intéresse au paradigme _fetch, convert & publish_ en mettant un accent sur la traduction collective. Étant donné qu'il n'existait à notre connaissance aucun logiciel libre facilitant l'édition de traductions à plusieurs, nous l'avons fait nous-même. Dans l'idée, nous avons cherché à faire une application qui serait la plus légère possible et la plus facile à installer. Tout est en JS vanille, pèse moins d'un mégaoctet, et est entièrement portable (à l'exception des instances d'Etherpad).
+Ce projet s'intéresse au paradigme _fetch, convert & publish_ en mettant un accent sur la traduction collective. Étant donné qu'il n'existait à notre connaissance aucun logiciel libre facilitant l'édition de traductions à plusieurs, nous l'avons fait nous-même. Dans l'idée, nous avons cherché à faire une application qui serait la plus légère possible et la plus facile à installer. Padatrad est écrit en JS vanille, pèse moins d'un mégaoctet, et est entièrement portable (à l'exception des instances d'Etherpad). Vous pouvez tester le logiciel dans une [démo en ligne](https://padatrad.editionsburnaout.fr/demo/).
 
 Si le paradigme vous intéresse plus que la traduction collective en tant que telle, peut-être trouverez-vous votre bonheur ici : [pad2print](https://gitlab.com/Luuse/pad2print) de Luuse, [Ethertoff](http://osp.kitchen/tools/ethertoff/) ou [Ether2html](http://osp.kitchen/tools/ether2html/) d’Open Source Publishing, [Collabprint](https://gitlab.com/quentinjuhel/collabprint) de Quentin Juhel, [Octomode](https://git.vvvvvvaria.org/varia/octomode) de Varia, [Libreto](https://libreto.net/) de Pierre Tandille, ou encore [Pink my pad!](https://pinkmypad.net/) de Nicolas Sauret[^julienb].
 
@@ -20,25 +20,31 @@ Commencez par télécharger la dernière version de Padatrad [ici](https://gitla
 
 Si vous souhaitez utiliser Padatrad avec d'autres personnes, mais que vous n'avez pas de serveur HTTP relié à Internet, nous proposons aussi d'héberger gratuitement des instances de Padatrad sur [padatrad.editionsburnaout.fr](https://padatrad.editionsburnaout.fr).
 
-### Fichier `config.js`
+## Configuration
 
-Le fichier `config.js` vous permet de vous approprier votre instance de Padatrad. Vous pouvez renseigner un titre pour votre projet, spécifier la langue cible et la langue source de votre traduction, etc. Le texte contenu dans le champ `infoText` est affiché dans la fenêtre pop-up qui apparaît lorsqu'un·e utilisateurice clique sur le bouton `Infos` du menu latéral. Les champs `extraUrlLabel` et `extraUrl` permettent d'ajouter un bouton de votre choix dans le menu latéral.
+Le dossier `config` contient un menu et des fichiers de configuration vous permettant de vous approprier votre instance de Padatrad. Vous pouvez facilement y ajouter ou supprimer des pads, les réordonner. Vous pouvez aussi renseigner un titre pour votre projet, spécifier la langue cible et la langue source de votre traduction, et plus généralement les métadonnées associées à votre projet. Ce menu est écrit en `PHP`, si bien qu'il est nécessaire que vous fassiez tourner un serveur PHP pour l'utiliser. Si vous souhaitez héberger votre logiciel en ligne, alors cela ne posera a priori aucun problème, il vous suffira de vous rendre à l'URL de votre instance de Padatrad et d'ajouter `config` à la fin du chemin, comme suit : `https://example.com/chemin/mon/padatrad/config`.
 
-### Renseigner ses pads 
+Si vous souhaitez utiliser ce menu de configuration en local, alors il vous faudra lancer un serveur PHP en local sur votre machine. De nombreuses ressources sont disponibles en ligne pour vous aider dans ce sens. Cependant, il est bon de rappeler qu'il est tout à fait possible d'utiliser et de configurer Padatrad sans serveur PHP. En effet, le fichier `config.php` sert uniquement à manipuler les informations contenues dans les fichiers `config.json` et `pads.json`.
 
-Le fichier `pads.json` vous permet de préciser sur quels pads sont vos contenus. Padatrad reconnait deux types de pads : `md` pour les pads contenant vos textes, au format Markdown ; `css` pour vos feuilles de style CSS. Vous pouvez utiliser autant de pads que vous le souhaitez. Chaque pad en Markdown correspond à une section de votre document, et chaque pad CSS correspond à une feuille de style. Les différents pads sont chargés dans l'ordre spécifié dans ce fichier. Maintenant, concernant les autres champs :
+Le texte contenu dans le champ `infoText` est affiché dans la fenêtre pop-up qui apparaît lorsqu'un·e utilisateurice clique sur le bouton `Infos` du menu latéral. Les champs `extraUrlLabel` et `extraUrl` permettent d'ajouter un bouton de votre choix dans le menu latéral.
 
-* `id` doit être rempli avec un nom unique ;
-* `string` vous permettra de retrouver votre pad dans le menu latéral ;
-* `url` doit contenir l'URL du pad correspondant.
+> **Attention :** Si vous souhaitez protéger votre configuration de possibles interventions extérieures, alors il vous sera nécessaire d'ajouter un mot de passe (par exemple avec des fichiers `.htaccess` et `.htpasswd`). Il est aussi possible plus simplement de renommer le fichier `index.php` avec un nom compliqué à trouver, le menu de configuration sera ensuite accessible comme suit : `https://example.com/chemin/vers/padatrad/config/nomcompliqueatrouver.php`.
 
-Une liste des CHATONS ayant déployé une instance publique d'Etherpad est disponible [ici](https://wiki.chatons.org/doku.php/services/bureautique_en_ligne/etherpad). 
+### Renseigner ses pads
 
-> **Attention :** Veillez à n'utiliser qu'un pad par serveur, autrement les serveurs concernés croiront que vous essayez de les DDOS et bloqueront vos requêtes.
+Le fichier `config/pads.json` contient les informations permettant de spécifier sur quels pads sont vos textes, et dans quel ordre ils sont chargés. Pour en modifier le contenu, vous pouvez utiliser le menu de configuration ou alors directement écrire dans le fichier `JSON`. Padatrad reconnait deux types de pads : `md` pour les pads contenant vos textes, au format Markdown ; `css` pour vos feuilles de style CSS. Vous pouvez utiliser autant de pads que vous le souhaitez. Chaque pad en Markdown correspond à une section de votre document, et chaque pad CSS correspond à une feuille de style. Les différents pads sont chargés dans l'ordre spécifié dans ce fichier. Maintenant, concernant les autres champs :
+
+* `ID` doit être rempli avec un nom unique ;
+* `String` vous permettra de retrouver votre pad dans le menu latéral ;
+* `URL` doit contenir l'URL du pad correspondant.
+
+Une liste des CHATONS ayant déployé une instance publique d'Etherpad est disponible [ici](https://wiki.chatons.org/doku.php/services/bureautique_en_ligne/etherpad).
+
+> **Attention :** Veillez à n'utiliser qu'un pad par serveur, autrement les serveurs concernés croiront que vous essayez de les DDOS et bloqueront vos requêtes. Ce comportement est dû au paramètre [`importExportRateLimiting`](https://github.com/ether/etherpad-lite/blob/06d7d12fbd6570a73b0bfc972ec59e6667d03cd5/settings.json.template#L573) de la configuration d'Etherpad.
 
 ## Usage
 
-Une fois vos fichiers `config.js` et `pads.json` prêts, vous pouvez commencer à remplir vos pads.
+Une fois votre Padatrad configuré, vous pouvez commencer à remplir vos pads.
 
 ### Préparation des fichiers et traduction
 
@@ -66,7 +72,7 @@ Dans la prévisualisation, votre traduction devrait normalement remplacer le par
 Ceci est un example de traduction de l'anglais vers le français. {.fr .accepted}
 ```
 
-Maintenant que vous savez comment traduire un paragraphe, vous savez virtuellement comment traduire tout type de document. Padatrad dispose aussi d'une fonctionnalité permettant de spécifier des variantes de traduction. Par exemple, vous pourriez vouloir voir coexister deux traductions pour la phrase précédente ; en plus de la première, on pourrait imaginer "Ceci est un example de traduction de la langue de Shakespeare vers celle de Molière." C'est possible en suivant cette syntaxe : 
+Maintenant que vous savez comment traduire un paragraphe, vous savez virtuellement comment traduire tout type de document. Padatrad dispose aussi d'une fonctionnalité permettant de spécifier des variantes de traduction. Par exemple, vous pourriez vouloir voir coexister deux traductions pour la phrase précédente ; en plus de la première, on pourrait imaginer "Ceci est un example de traduction de la langue de Shakespeare vers celle de Molière." C'est possible en suivant cette syntaxe :
 
 ```markdown
 Ceci est un example de traduction de [l'anglais vers le français]{alt="la langue de Shakespeare vers celle de Molière"}. {.fr .accepted}
@@ -103,7 +109,7 @@ Avoir des archives de vos pads c'est cool, mais pouvoir exporter votre travail a
 
 Pour automatiser certains traitements sur votre traduction, le plus simple sera certainement de passer par un hook avec PagedJS. Les hooks sont des plugins vous permettant de modifier le comportement de PagedJS. De nombreux hooks ont déjà été développés par la communauté. Pour les intégrer à votre projet, ajoutez le fichier JavaScript contenant votre hook dans le dossier `scripts/hooks` et modifiez le fichier `hooks.js` en y ajoutant la ligne correspondant à l'importation de votre hook.
 
-#### Hooks déjà installés 
+#### Hooks déjà installés
 
 Quelques hooks ont déjà été installés dans Padatrad :
 - [reload_in_place](https://gitlab.com/nicolastaf/pagedjs-reload-in-place) de [Nicolas Taffin](https://polylogue.org/) ;
@@ -134,7 +140,7 @@ Padatrad allows collective translation of texts and editing them from a web brow
 
 ## Description
 
-This project focuses on the _fetch, convert & publish_ paradigm, with an emphasis on collective translation. Since there was no known open-source software facilitating collaborative translation editing, we created Padatrad ourselves. In essence, we aimed to create an application that is as lightweight and easy to install as possible. Everything is in vanilla JS, weighs less than one megabyte, and is entirely portable (except for Etherpad instances).
+This project focuses on the _fetch, convert & publish_ paradigm, with an emphasis on collective translation. Since there was no known open-source software facilitating collaborative translation editing, we created Padatrad ourselves. In essence, we aimed to create an application that is as lightweight and easy to install as possible. Padatrad is written in vanilla JS, weighs less than one megabyte, and is entirely portable (except for Etherpad instances).
 
 If the paradigm interests you more than collective translation itself, you may find what you're looking for here: [pad2print](https://gitlab.com/Luuse/pad2print) by Luuse, [Ethertoff](http://osp.kitchen/tools/ethertoff/) or [Ether2html](http://osp.kitchen/tools/ether2html/) by Open Source Publishing, [Collabprint](https://gitlab.com/quentinjuhel/collabprint) by Quentin Juhel, [Octomode](https://git.vvvvvvaria.org/varia/octomode) by Varia, [Libreto](https://libreto.net/) by Pierre Tandille, or [Pink my pad!](https://pinkmypad.net/) by Nicolas Sauret[^julienb].
 
