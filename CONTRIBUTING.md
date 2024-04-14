@@ -27,6 +27,7 @@
     - [ ] Graphisme du menu latéral
     - [ ] Responsivité
 - [ ] Ajouter la possibilité de choisir les couleurs de surlignage
+- [ ] Ajouter un bouton vers la configuration dans l'overlay
 
 ## Documentation
 

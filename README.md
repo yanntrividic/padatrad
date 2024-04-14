@@ -90,6 +90,8 @@ Si vous souhaitez ne pas effectuer de tirage aléatoire dans la prévisualisatio
 
 > Nous avons rajouté à markdown-it les extensions [markdown-it-attrs](https://www.npmjs.com/package/) ainsi que [markdown-it-bracketed-spans](https://www.npmjs.com/package/markdown-it-bracketed-spans) qui permettent aux utilisateurices une latitude importante pour remplir de nombreux besoins en termes de mise en page et de sémantisation.
 
+> Il existe une extension de [Markdown pour Etherpad](https://github.com/ether/ep_markdown). Si celle-ci est installée sur l'instance que vous utilisez et que [les entêtes CORS ont été ajoutés sur l'exportation des fichiers](https://github.com/ether/ep_markdown/pull/30), alors vous pourrez activer l'option `ep_markdown` dans la configuration de Padatrad et ainsi rédiger vos contenus bien plus simplement.
+
 ### Sauvegarde et backups
 
 Pour sauvegarder l'état courant de votre traduction, cliquez sur le bouton `Sauvegarder` du menu latéral. Une archive de vos pads au format `zip` est sauvegardée sur votre machine. Il est possible d'intégrer cette archive à vos backups Padatrad et de la prévisualiser à nouveau plus tard. Pour ce faire, suivez la procédure suivante :
@@ -221,6 +223,8 @@ If you want to avoid random selection in the preview, then add the keyword `defa
 ```
 
 > We have added the [markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs) and [markdown-it-bracketed-spans](https://www.npmjs.com/package/markdown-it-bracketed-spans) extensions to markdown-it, which allow users a significant latitude to fulfill many layout and semantic needs.
+
+> There is a [Markdown extension for Etherpad](https://github.com/ether/ep_markdown). If this extension is installed on the instance you're using and [CORS headers have been added to file exports](https://github.com/ether/ep_markdown/pull/30), then you can enable the `ep_markdown` option in the Padatrad configuration, allowing you to write your content much more easily.
 
 ### Save and backups
 

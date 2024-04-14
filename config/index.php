@@ -133,9 +133,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <!-- <label>Langue de l'application : <input type="text" name="appLanguage" value="<?php echo $config['appLanguage']; ?>"></label><br> -->
         <label>Label de l'URL additionnelle : <input type="text" name="extraUrlLabel" placeholder="Mon super lien" value="<?php echo $config['extraUrlLabel']; ?>"></label><br>
         <label>Lien de URL additionnelle : <input type="text" name="extraUrl" placeholder="https://monsuperlien.fr" value="<?php echo $config['extraUrl']; ?>"></label><br>
-        <?php $check = $config['typesetting']?"checked":""; ?>
-        <label>Typesetting (extension) : <input type="checkbox" name="typesetting" <?=$check; ?>></label><br>
-        <label>ep_markdown activé sur vos Etherpad : <input type="checkbox" name="ep_markdown" <?=$check; ?>></label><br>
+        <?php $checkTypesetting = $config['typesetting']?"checked":""; ?>
+        <label>Typesetting (extension) : <input type="checkbox" name="typesetting" <?=$checkTypesetting; ?>></label><br>
+        <?php $checkEpMarkdown = $config['ep_markdown']?"checked":""; ?>
+        <label>ep_markdown activé sur vos Etherpad : <input type="checkbox" name="ep_markdown" <?=$checkEpMarkdown; ?>></label><br>
         <h2>Médadonnées</h2>
         <label>Auteurices : <input type="text" name="author" value="<?php echo $config['author']; ?>"></label><br>
         <label>Description : <textarea name="description"><?php echo $config['description']; ?></textarea></label><br>
