@@ -55,6 +55,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if (array_key_exists($key, $config)) {
             $config[$key] = $value;
         }
+        $config["typesetting"] = !empty($_POST['typesetting']);
+        $config["ep_markdown"] = !empty($_POST['ep_markdown']);
     }
 
     // Write updated JSON data back to file
@@ -73,6 +75,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Padatrad | Configuration</title>
     <link href="../assets/styles/book.css" rel="stylesheet">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <meta name="category" content="padatrad">
+    <meta name="description" content="Padatrad permet de traduire collectivement des textes et de les éditer depuis un navigateur web.">
+    <meta name="keywords" content="traduction, édition, pagedjs, traduction collective, collaboration, burn~août">
   </head>
   <body>
     <h1>Pads</h1>
@@ -92,7 +99,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           </label>
           <br>
         </div>
-      </div> <?php endforeach; ?> <label>
+      </div> <?php endforeach; ?>
+      <p><i>Il est possible de drag-and-drop les pads pour changer le chemin de fer du document.</i></p>
+      <label>
         <input type="submit" name="submit1" value="Sauvegarder">
       </label>
     </form>
@@ -124,7 +133,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <!-- <label>Langue de l'application : <input type="text" name="appLanguage" value="<?php echo $config['appLanguage']; ?>"></label><br> -->
         <label>Label de l'URL additionnelle : <input type="text" name="extraUrlLabel" placeholder="Mon super lien" value="<?php echo $config['extraUrlLabel']; ?>"></label><br>
         <label>Lien de URL additionnelle : <input type="text" name="extraUrl" placeholder="https://monsuperlien.fr" value="<?php echo $config['extraUrl']; ?>"></label><br>
-        <label>Typesetting (extension) : <input type="checkbox" name="typesetting" <?php if ($config['typesetting']) echo 'checked'; ?>></label><br>
+        <?php $check = $config['typesetting']?"checked":""; ?>
+        <label>Typesetting (extension) : <input type="checkbox" name="typesetting" <?=$check; ?>></label><br>
+        <label>ep_markdown activé sur vos Etherpad : <input type="checkbox" name="ep_markdown" <?=$check; ?>></label><br>
         <h2>Médadonnées</h2>
         <label>Auteurices : <input type="text" name="author" value="<?php echo $config['author']; ?>"></label><br>
         <label>Description : <textarea name="description"><?php echo $config['description']; ?></textarea></label><br>

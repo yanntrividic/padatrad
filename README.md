@@ -37,7 +37,7 @@ Le texte contenu dans le champ `infoText` est affiché dans la fenêtre pop-up q
 Le fichier `config/pads.json` contient les informations permettant de spécifier sur quels pads sont vos textes, et dans quel ordre ils sont chargés. Pour en modifier le contenu, vous pouvez utiliser le menu de configuration ou alors directement écrire dans le fichier `JSON`. Padatrad reconnait deux types de pads : `md` pour les pads contenant vos textes, au format Markdown ; `css` pour vos feuilles de style CSS. Vous pouvez utiliser autant de pads que vous le souhaitez. Chaque pad en Markdown correspond à une section de votre document, et chaque pad CSS correspond à une feuille de style. Les différents pads sont chargés dans l'ordre spécifié dans ce fichier. Maintenant, concernant les autres champs :
 
 * `ID` doit être rempli avec un nom unique ;
-* `String` vous permettra de retrouver votre pad dans le menu latéral ;
+* `Label` vous permettra de retrouver votre pad dans le menu latéral ;
 * `URL` doit contenir l'URL du pad correspondant.
 
 Une liste des CHATONS ayant déployé une instance publique d'Etherpad est disponible [ici](https://wiki.chatons.org/doku.php/services/bureautique_en_ligne/etherpad).
@@ -145,23 +145,32 @@ This project focuses on the _fetch, convert & publish_ paradigm, with an emphasi
 
 If the paradigm interests you more than collective translation itself, you may find what you're looking for here: [pad2print](https://gitlab.com/Luuse/pad2print) by Luuse, [Ethertoff](http://osp.kitchen/tools/ethertoff/) or [Ether2html](http://osp.kitchen/tools/ether2html/) by Open Source Publishing, [Collabprint](https://gitlab.com/quentinjuhel/collabprint) by Quentin Juhel, [Octomode](https://git.vvvvvvaria.org/varia/octomode) by Varia, [Libreto](https://libreto.net/) by Pierre Tandille, or [Pink my pad!](https://pinkmypad.net/) by Nicolas Sauret[^julienb].
 
+And if you want to try Padatrad online, a demo is available [here](https://padatrad.editionsburnaout.fr/demo/).
+
+
 ## Installation
 
 Start by downloading the latest version of Padatrad [here](https://gitlab.com/editionsburnaout/padatrad/-/releases). Unzip the archive. From there, you only need an HTTP server. This can run on your local machine or be connected to the internet. In both cases, you don't need any other dependencies to install for Padatrad to work correctly. If everything is fine, you can open a web browser at the URL of your project; it should already work.
 
 If you want to use Padatrad with others but don't have an internet-connected HTTP server, we also offer to host Padatrad instances for free at [padatrad.editionsburnaout.fr](https://padatrad.editionsburnaout.fr).
 
-### `config.js` file
+### Configuration
 
-The `config.js` file allows you to customize your Padatrad instance. You can provide a title for your project, specify the target and source language for your translation, etc. The text in the `infoText` field is displayed in the pop-up window that appears when a user clicks the `Info` button in the sidebar. The `extraUrlLabel` and `extraUrl` fields allow you to add a button of your choice to the sidebar.
+The `config` folder contains a menu and configuration files allowing you to tailor your Padatrad instance to your needs. You can easily add or remove pads, reorder them, set a title for your project, specify the target and source languages for your translation, and manage other project metadata. This menu is written in PHP, so it's necessary to have a PHP server running to use it. If you intend to host your software online, this shouldn't be a problem. You can simply go to the URL of your Padatrad instance and add `/config` to the end of the path, like this: `https://example.com/path/to/padatrad/config`.
+
+If you wish to use this configuration menu locally, you'll need to run a PHP server on your machine. Many resources are available online to assist you with this. However, it's worth noting that it's entirely possible to use and configure Padatrad without a PHP server. In fact, the `config.php` file is only used to manipulate the information contained in the `config.json` and `pads.json` files.
+
+The text in the `infoText` field is displayed in the pop-up window that appears when a user clicks the `Info` button in the sidebar. The `extraUrlLabel` and `extraUrl` fields allow you to add a button of your choice to the sidebar.
+
+> **Warning:** If you want to protect your configuration from possible external interference, you'll need to add a password (for example, using `.htaccess` and `.htpasswd` files). Alternatively, you can simply rename the `index.php` file to a difficult-to-guess name, and then the configuration menu will be accessible as follows: `https://example.com/path/to/padatrad/config/difficulttoguessname.php`.
 
 ### Providing information for your pads
 
-The `pads.json` file allows you to specify which pads contain your content. Padatrad recognizes two types of pads: `md` for pads containing your texts in Markdown format, and `css` for your CSS style sheets. You can use as many pads as you like. Each Markdown pad corresponds to a section of your document, and each CSS pad corresponds to a style sheet. The different pads are loaded in the order specified in this file. Now, regarding the other fields:
+The `config/pads.json` file allows you to specify which pads contain your content, and in which order they are loaded. Padatrad recognizes two types of pads: `md` for pads containing your texts in Markdown format, and `css` for your CSS style sheets. You can use as many pads as you like. Each Markdown pad corresponds to a section of your document, and each CSS pad corresponds to a style sheet. The different pads are loaded in the order specified in this file. Now, regarding the other fields:
 
-- `id` must be filled with a unique name.
-- `string` will help you identify your pad in the sidebar.
-- `url` must contain the URL of the corresponding pad.
+- `ID` must be filled with a unique name.
+- `Label` will help you identify your pad in the sidebar.
+- `URL` must contain the URL of the corresponding pad.
 
 A list of CHATONS that have deployed a public instance of Etherpad is available [here](https://wiki.chatons.org/doku.php/services/bureautique_en_ligne/etherpad).
 
@@ -169,7 +178,7 @@ A list of CHATONS that have deployed a public instance of Etherpad is available 
 
 ## Usage
 
-Once your `config.js` and `pads.json` files are ready, you can start filling in your pads.
+Once you are done with configuring your Padatrad, you can start filling in your pads.
 
 ### File preparation and translation
 
