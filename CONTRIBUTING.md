@@ -17,7 +17,7 @@
 - [ ] Modifications en temps-réel plutôt qu'avoir à refresh : faire des recherches sur une possible API pour changer le contenu des pads à distance, en utilisant notamment la propriété `contentEditable`. (Voir la fonction `setText` [ici](https://etherpad.org/doc/v1.8.4/#index_what_can_i_do_with_this_api)). ;
 - [ ] Ou alors, au lieu du temps-réel, avoir un bouton "refresh" qui rechargerait juste les pads et la preview
 - [x] Régler le bug concernant le surlignage
-- [ ] Ajouter le support pour le plugin [`ep_markdown`](https://npmjs.org/package/ep_markdown) quand mon [`issue`](https://github.com/ether/ep_markdown/issues/139) aura été fermée. Ou alors proposer une PR pour `ep_markdown`.
+- [x] Ajouter le support pour le plugin [`ep_markdown`](https://npmjs.org/package/ep_markdown) quand mon [`issue`](https://github.com/ether/ep_markdown/issues/139) aura été fermée. Ou alors proposer une PR pour `ep_markdown`.
 - [ ] Améliorer le menu de configuration afin de permettre de changer le format du document, et charger des polices.
 
 
@@ -35,7 +35,7 @@
 - [ ] Publier un issue sur PagedJS pour les gros chunks de texte qui font totalement ramer Firefox (et pas Chrome)
 - [ ] Traduire le dépôt en anglais
 - [ ] Faire une PR sur regex-typo
-- [ ] Déployer une démo sur padatrad.editionsburnaout.fr, faire en sorte qu'elle soit pérenne
+- [X] Déployer une démo sur padatrad.editionsburnaout.fr, faire en sorte qu'elle soit pérenne
 - [X] Mettre à jour la documentation concernant la configuration
 - [X] Mettre à jour la documentation en parlant du [importExportRateLimiting](https://github.com/ether/etherpad-lite/blob/06d7d12fbd6570a73b0bfc972ec59e6667d03cd5/settings.json.template#L573).
-- [ ] Faire un meilleur CSS pour la demo histoire qu'on puisse se rendre mieux compte du potentiel de la chose.
+- [X] Faire un meilleur CSS pour la demo histoire qu'on puisse se rendre mieux compte du potentiel de la chose.
