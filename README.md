@@ -24,13 +24,13 @@ Si vous souhaitez utiliser Padatrad avec d'autres personnes, mais que vous n'ave
 
 ## Configuration
 
-Le dossier `config` contient un menu et des fichiers de configuration vous permettant de vous approprier votre instance de Padatrad. Vous pouvez facilement y ajouter ou supprimer des pads, les réordonner. Vous pouvez aussi renseigner un titre pour votre projet, spécifier la langue cible et la langue source de votre traduction, et plus généralement les métadonnées associées à votre projet. Ce menu est écrit en `PHP`, si bien qu'il est nécessaire que vous fassiez tourner un serveur PHP pour l'utiliser. Si vous souhaitez héberger votre logiciel en ligne, alors cela ne posera a priori aucun problème, il vous suffira de vous rendre à l'URL de votre instance de Padatrad et d'ajouter `config` à la fin du chemin, comme suit : `https://example.com/chemin/mon/padatrad/config`.
+Le dossier `config` contient un menu et des fichiers de configuration vous permettant de vous approprier votre instance de Padatrad. Vous pouvez facilement y ajouter ou supprimer des pads, les réordonner. Vous pouvez aussi renseigner un titre pour votre projet, spécifier la langue cible et la langue source de votre traduction, et plus généralement les métadonnées associées à votre projet. Ce menu est écrit en `PHP`, si bien qu'il est nécessaire que vous fassiez tourner un serveur PHP pour l'utiliser. Si vous souhaitez héberger votre logiciel en ligne, alors cela ne posera a priori aucun problème, il vous suffira de cliquer sur le bouton `Configuration` du menu latéral pour y accéder.
 
-Si vous souhaitez utiliser ce menu de configuration en local, alors il vous faudra lancer un serveur PHP en local sur votre machine. De nombreuses ressources sont disponibles en ligne pour vous aider dans ce sens. Cependant, il est bon de rappeler qu'il est tout à fait possible d'utiliser et de configurer Padatrad sans serveur PHP. En effet, le fichier `config.php` sert uniquement à manipuler les informations contenues dans les fichiers `config.json` et `pads.json`.
+Si vous souhaitez utiliser ce menu de configuration en local, alors il vous faudra lancer un serveur PHP en local sur votre machine. De nombreuses ressources sont disponibles en ligne pour vous aider dans ce sens. Cependant, il est bon de rappeler qu'il est tout à fait possible d'utiliser et de configurer Padatrad sans serveur PHP. En effet, le menu de configuration sert uniquement à manipuler les informations contenues dans les fichiers `config.json` et `pads.json`.
 
 Le texte contenu dans le champ `infoText` est affiché dans la fenêtre pop-up qui apparaît lorsqu'un·e utilisateurice clique sur le bouton `Infos` du menu latéral. Les champs `extraUrlLabel` et `extraUrl` permettent d'ajouter un bouton de votre choix dans le menu latéral.
 
-> **Attention :** Si vous souhaitez protéger votre configuration de possibles interventions extérieures, alors il vous sera nécessaire d'ajouter un mot de passe (par exemple avec des fichiers `.htaccess` et `.htpasswd`). Il est aussi possible plus simplement de renommer le fichier `index.php` avec un nom compliqué à trouver, le menu de configuration sera ensuite accessible comme suit : `https://example.com/chemin/vers/padatrad/config/nomcompliqueatrouver.php`.
+> **Attention :** Si vous souhaitez protéger votre configuration de possibles interventions extérieures, alors il vous sera nécessaire d'ajouter un mot de passe (par exemple avec des fichiers `.htaccess` et `.htpasswd`). Il est aussi possible plus simplement de renommer le fichier `index.php` avec un nom compliqué à trouver, le menu de configuration sera ensuite accessible comme suit : `https://example.com/chemin/vers/padatrad/config/nomcompliqueatrouver.php`. Pour continuer d'utiliser le bouton `Configuration`, il vous sera aussi nécessaire de mettre à jour le nom du fichier dans le menu de configuration.
 
 ### Renseigner ses pads
 
@@ -60,7 +60,7 @@ This is an example for a translation from english to french.
 There is not much else to say about this example.
 ```
 
-Une fois le texte prêt dans votre pad, il devrait apparaître aussi dans la prévisualisation de Padatrad. Vous pouvez alors commencer la traduction. Par exemple, pour traduire le premier paragraphe, ajoutez votre traduction sous le texte source concerné et précisez qu'il s'agit du texte cible en ajoutant la classe `{.fr}` en fin de paragraphe :
+Une fois le texte prêt dans votre pad, il devrait apparaître aussi dans la prévisualisation de Padatrad (il est nécessaire de rafraîchir la page pour intégrer les modifications). Vous pouvez alors commencer la traduction. Par exemple, pour traduire le premier paragraphe, ajoutez votre traduction sous le texte source concerné et précisez qu'il s'agit du texte cible en ajoutant la classe `{.fr}` en fin de paragraphe :
 
 ```markdown
 This is an example for a translation from english to french.
@@ -194,7 +194,7 @@ This is an example for a translation from English to French.
 There is not much else to say about this example.
 ```
 
-Once the text is ready in your pad, it should also appear in the Padatrad preview. You can then begin the translation. For example, to translate the first paragraph, add your translation below the relevant source text and specify that it is the target text by adding the class `{.fr}` at the end of the paragraph:
+Once the text is ready in your pad, it should also appear in the Padatrad preview (it is necessary to refresh the page in order to integrate the modifications). You can then begin the translation. For example, to translate the first paragraph, add your translation below the relevant source text and specify that it is the target text by adding the class `{.fr}` at the end of the paragraph:
 
 ```markdown
 This is an example for a translation from English to French.
