@@ -109,7 +109,7 @@ button {
 }
 
 .mdAnchor {
-    margin-left: .2em;
+    margin-left: 0.5em;
 }
 
 /* Horizontal format */
@@ -123,6 +123,7 @@ button {
         overflow: auto;
         display: block;
         position: fixed;
+        max-width: 12em;
     }
     [data-id="modal"] {
         display: none;
