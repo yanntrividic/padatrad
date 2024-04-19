@@ -55,6 +55,8 @@ export default class Overlay {
         this.infoText = config.infoText;
         this.extraUrlLabel = config.extraUrlLabel ;
         this.extraUrl = config.extraUrl ;
+        this.configBtn = config.configMenuOverlayButton ;
+        this.configURL = config.configMenuURL ;
 
         this.generatePannel() ; // Generates the main overlay pannel
         this.generateModal() ; // info modal in which is displayed the infoText
@@ -94,6 +96,9 @@ export default class Overlay {
             this.generateButton("btnExtra", this.extraUrlLabel, () => { window.open(this.extraUrl, '_blank' ); });
         }
         this.generateButton("btnBackups", "Backups", () => { window.open('backups', '_blank' ); })
+        if(this.configBtn && this.configURL) {
+            this.generateButton("btnConfig", "Configuration", () => { window.open(this.configURL, '_blank' ); });
+        }
         this.insertButtons();
 
         if (!isBackup()) {
