@@ -57,6 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         $config["typesetting"] = !empty($_POST['typesetting']);
         $config["ep_markdown"] = !empty($_POST['ep_markdown']);
+        $config["configMenuOverlayButton"] = !empty($_POST['configMenuOverlayButton']);
     }
 
     // Write updated JSON data back to file
@@ -123,6 +124,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <label>Typesetting (extension) : <input type="checkbox" name="typesetting" <?=$checkTypesetting; ?>></label><br>
         <?php $checkEpMarkdown = $config['ep_markdown']?"checked":""; ?>
         <label>ep_markdown activé sur vos Etherpad : <input type="checkbox" name="ep_markdown" <?=$checkEpMarkdown; ?>></label><br>
+        <?php $checkEpConfigBtn = $config['configMenuOverlayButton']?"checked":""; ?>
+        <label>Bouton vers le menu de configuration dans le menu latéral : <input type="checkbox" name="configMenuOverlayButton" <?=$checkEpConfigBtn; ?>></label><br>
+        <label>Lien vers le menu de configuration (renommez-le pour le cacher des utilisateurices) : <input type="text" name="configMenuURL" placeholder="config/index.php" value="<?php echo $config['configMenuURL']; ?>"></label><br>
         <h2>Médadonnées</h2>
         <label>Auteurices : <input type="text" name="author" value="<?php echo $config['author']; ?>"></label><br>
         <label>Description : <textarea name="description"><?php echo $config['description']; ?></textarea></label><br>
