@@ -243,6 +243,7 @@ function changeColorOut(event) {
  * @param {*} event
  */
 function switchHighlight(event){
+    console.log("switch!")
     var checkbox = event.target;
     if (!checkbox.checked) {
         changeColorByClassName("target", "transparent");
@@ -257,7 +258,7 @@ function switchHighlight(event){
 function changeColorByClassName(className, color) {
     var elems = document.getElementsByClassName(className);
     for(let i = 0; i < elems.length; i++) {
-        elems[i].style.backgroundColor = color;
+        elems[i].style.setProperty('background-color', color, 'important');
     }
 }
 
