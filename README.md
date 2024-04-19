@@ -158,13 +158,13 @@ If you want to use Padatrad with others but don't have an internet-connected HTT
 
 ### Configuration
 
-The `config` folder contains a menu and configuration files allowing you to tailor your Padatrad instance to your needs. You can easily add or remove pads, reorder them, set a title for your project, specify the target and source languages for your translation, and manage other project metadata. This menu is written in PHP, so it's necessary to have a PHP server running to use it. If you intend to host your software online, this shouldn't be a problem. You can simply go to the URL of your Padatrad instance and add `/config` to the end of the path, like this: `https://example.com/path/to/padatrad/config`.
+The `config` folder contains a menu and configuration files allowing you to tailor your Padatrad instance to your needs. You can easily add or remove pads, reorder them, set a title for your project, specify the target and source languages for your translation, and manage other project metadata. This menu is written in PHP, so it's necessary to have a PHP server running to use it. If you intend to host your software online, this shouldn't be a problem. You can simply click on the `Configuration` button of the side menu to access it.
 
-If you wish to use this configuration menu locally, you'll need to run a PHP server on your machine. Many resources are available online to assist you with this. However, it's worth noting that it's entirely possible to use and configure Padatrad without a PHP server. In fact, the `config.php` file is only used to manipulate the information contained in the `config.json` and `pads.json` files.
+If you wish to use this configuration menu locally, you'll need to run a PHP server on your machine. Many resources are available online to assist you with this. However, it's worth noting that it's entirely possible to use and configure Padatrad without a PHP server. In fact, the configuration menu file is only used to manipulate the information contained in the `config.json` and `pads.json` files.
 
 The text in the `infoText` field is displayed in the pop-up window that appears when a user clicks the `Info` button in the sidebar. The `extraUrlLabel` and `extraUrl` fields allow you to add a button of your choice to the sidebar.
 
-> **Warning:** If you want to protect your configuration from possible external interference, you'll need to add a password (for example, using `.htaccess` and `.htpasswd` files). Alternatively, you can simply rename the `index.php` file to a difficult-to-guess name, and then the configuration menu will be accessible as follows: `https://example.com/path/to/padatrad/config/difficulttoguessname.php`.
+> **Warning:** If you want to protect your configuration from possible external interference, you'll need to add a password (for example, using `.htaccess` and `.htpasswd` files). Alternatively, you can simply rename the `index.php` file to a difficult-to-guess name, and then the configuration menu will be accessible as follows: `https://example.com/path/to/padatrad/config/difficulttoguessname.php`. In order to keep using the `Configuration` button, you have to update the name of the file in the configuration menu.
 
 ### Providing information for your pads
 
