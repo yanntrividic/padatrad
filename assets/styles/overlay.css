@@ -124,6 +124,7 @@ button {
         display: block;
         position: fixed;
         max-width: 12em;
+        max-height: 90vh;
     }
     [data-id="modal"] {
         display: none;
