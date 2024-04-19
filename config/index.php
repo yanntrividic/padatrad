@@ -23,7 +23,7 @@ $newPads = [];
 
 // Check if form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-  if ( $_POST['submit1']) {
+  if (isset($_POST['submit1'])) {
     foreach ($_POST as $key => $value) {
       // Check if field corresponds to pad data
       if (strpos($key, '_') !== false) {
@@ -38,17 +38,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     writeJSON($padsFile, array_values($newPads)); // Convert associative array to indexed array
   }
 
-  if ( $_POST['submit2']) {
+  if (isset($_POST['submit2'])) {
     $newPads = $pads;
     foreach ($_POST as $key => $value) {
       if( $key != "submit2") $newPads["new"][$key] = $value;
     }
 
     // Write updated JSON data back to file
-    writeJSON($jsonFile, array_values($newPads)); // Convert associative array to indexed array
+    writeJSON($padsFile, array_values($newPads)); // Convert associative array to indexed array
   }
 
-  if ($_POST['submit3']) {
+  if (isset($_POST['submit3'])) {
     // Update JSON data with form inputs
     foreach ($_POST as $key => $value) {
         // Check if field exists in JSON data
@@ -87,17 +87,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form method="post" id="form_1"> <?php foreach ($pads as $pad): ?> <div class="container">
         <div class="draggable" draggable="true">
           <legend> <?php echo $pad['id']; ?> </legend>
-          <label>ID : <input type="text" name="id_<?php echo $pad['id']; ?>" placeholder="maSection" value="<?php echo $pad['id']; ?>">
-          </label>
-          <br>
-          <label>Label : <input type="text" name="string_<?php echo $pad['id']; ?>" placeholder="Ma section" value="<?php echo $pad['string']; ?>">
-          </label>
-          <br>
-          <label>Type : <input type="radio" name="type_<?php echo $pad['id']; ?>" value="md" <?php if ($pad['type'] == 'md') echo 'checked'; ?>> Markdown <input type="radio" name="type_<?php echo $pad['id']; ?>" value="css" <?php if ($pad['type'] == 'css') echo 'checked'; ?>> CSS </label>
-          <br>
-          <label>URL : <input type="text" name="url_<?php echo $pad['id']; ?>" placeholder="https://framapad.org/semestriel/p/maSection" value="<?php echo $pad['url']; ?>">
-          </label>
-          <br>
+          <label>ID : <input type="text" name="id_<?php echo $pad['id']; ?>" placeholder="maSection" value="<?php echo $pad['id']; ?>" onfocus="fixSelectable(this, true)" onblur="fixSelectable(this, false)"></label><br>
+          <label>Label : <input type="text" name="string_<?php echo $pad['id']; ?>" placeholder="Ma section" value="<?php echo $pad['string']; ?>" onfocus="fixSelectable(this, true)" onblur="fixSelectable(this, false)"></label><br>
+          <label>Type : <input type="radio" name="type_<?php echo $pad['id']; ?>" value="md" <?php if ($pad['type'] == 'md') echo 'checked'; ?>> Markdown <input type="radio" name="type_<?php echo $pad['id']; ?>" value="css" <?php if ($pad['type'] == 'css') echo 'checked'; ?>> CSS </label><br>
+          <label>URL : <input type="text" name="url_<?php echo $pad['id']; ?>" placeholder="https://framapad.org/semestriel/p/maSection" value="<?php echo $pad['url']; ?>" onfocus="fixSelectable(this, true)" onblur="fixSelectable(this, false)"></label><br>
         </div>
       </div> <?php endforeach; ?>
       <p><i>Il est possible de drag-and-drop les pads pour changer le chemin de fer du document.</i></p>
@@ -107,17 +100,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </form>
     <h2>Ajouter un nouveau pad</h2>
     <form method="post" id="form_2">
-      <label>ID : <input type="text" name="id" placeholder="maSection">
-      </label>
-      <br>
-      <label>Label : <input type="text" name="string" placeholder="Ma section">
-      </label>
-      <br>
-      <label>Type : <input type="radio" name="type" value="md" checked> Markdown <input type="radio" name="type" value="css"> CSS </label>
-      <br>
-      <label>URL : <input type="text" name="url" placeholder="https://framapad.org/semestriel/p/maSection">
-      </label>
-      <br>
+      <label>ID : <input type="text" name="id" placeholder="maSection"></label><br>
+      <label>Label : <input type="text" name="string" placeholder="Ma section"></label><br>
+      <label>Type : <input type="radio" name="type" value="md" checked> Markdown <input type="radio" name="type" value="css"> CSS </label><br>
+      <label>URL : <input type="text" name="url" placeholder="https://framapad.org/semestriel/p/maSection"></label><br>
       <input type="submit" name="submit2" value="Ajouter">
     </form>
 
@@ -237,6 +223,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }, {
           offset: Number.NEGATIVE_INFINITY
         }).element
+      }
+
+      function fixSelectable(oElement, bGotFocus) {
+        var oParent = oElement.parentNode;
+        while(oParent !== null && !/\bdraggable\b/.test(oParent.className))
+          oParent = oParent.parentNode;
+        if(oParent !== null)
+          oParent.draggable = !bGotFocus;
       }
     </script>
     <script>
