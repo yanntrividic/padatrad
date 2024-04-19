@@ -190,20 +190,24 @@ export default class Overlay {
     }
 
     insertLinks(){
-        let l = document.createElement("ul");
-        l.setAttribute("id", "padList");
+        let pl = document.createElement("ul");
+        pl.setAttribute("id", "padMdList");
         this.links.md.forEach(md => {
             let e = document.createElement("li");
             e.append(md);
             addAnchor(e, md);
-            l.append(e);
+            pl.append(e);
         });
+        this.pannel.append(pl);
+
+        let sl = document.createElement("ul");
+        sl.setAttribute("id", "padCssList");
         this.links.css.forEach(css => {
             let e = document.createElement("li");
             e.append(css);
-            l.append(e);
+            sl.append(e);
         });
-        this.pannel.append(l);
+        this.pannel.append(sl);
     }
 
     generateParticipants(){
