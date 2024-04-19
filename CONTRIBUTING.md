@@ -15,12 +15,15 @@ En manque d'idées sur où commencer ? Vous trouverez ci-dessous une liste de ch
     - [X] ragadjust
 - [ ] Proposer une version avec le hook FacingSections
 - [ ] Diviser les `p` en `span` pour un gestion plus fine des chunks de traduction (voir `replace-translation.js`). Est-ce pertinent ?
-- [x] Associer un tooltip aux `.target` qui contient le texte source (augmenter `replace-translation.js`)
+- [X] Associer un tooltip aux `.target` qui contient le texte source (augmenter `replace-translation.js`)
 - [ ] Modifications en temps-réel plutôt qu'avoir à refresh : faire des recherches sur une possible API pour changer le contenu des pads à distance, en utilisant notamment la propriété `contentEditable`. (Voir la fonction `setText` [ici](https://etherpad.org/doc/v1.8.4/#index_what_can_i_do_with_this_api))
 - [ ] Ou alors, au lieu du temps-réel, avoir un bouton "refresh" qui rechargerait juste les pads et la preview
-- [x] Régler le bug concernant le surlignage
+- [X] Régler le bug concernant le surlignage
 - [ ] Ajouter le support pour le plugin [`ep_markdown`](https://npmjs.org/package/ep_markdown) quand mon [`issue`](https://github.com/ether/ep_markdown/issues/139) aura été fermée. Ou alors proposer une PR pour `ep_markdown`
 - [ ] Améliorer le menu de configuration afin de permettre de changer le format du document, et charger des polices
+- [ ] Ajouter au formulaire de configuration la possibilité de renommer le fichier `index.php` plutôt que d'avoir à le faire côté serveur
+- [ ] Améliorer le drag-and-drop pour les pads dans le menu de configuration. Ajouter la possibilité d'assigner une position où inserer le pad dans un champ
+- [ ] Augmenter le parser de Markdown afin de supporter des front-matter, notamment pour assigner des classes à la section toute entière (ou alors les assigner depuis la configuration ?) 
 
 ## Cosmétique
 
@@ -39,4 +42,4 @@ En manque d'idées sur où commencer ? Vous trouverez ci-dessous une liste de ch
 - [ ] Déployer une démo sur padatrad.editionsburnaout.fr, faire en sorte qu'elle soit pérenne
 - [X] Mettre à jour la documentation concernant la configuration
 - [X] Mettre à jour la documentation en parlant du [importExportRateLimiting](https://github.com/ether/etherpad-lite/blob/06d7d12fbd6570a73b0bfc972ec59e6667d03cd5/settings.json.template#L573)
-- [ ] Faire un meilleur CSS pour la demo histoire qu'on puisse se rendre mieux compte du potentiel de la chose
+- [X] Faire un meilleur CSS pour la demo histoire qu'on puisse se rendre mieux compte du potentiel de la chose
