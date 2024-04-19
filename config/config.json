@@ -10,7 +10,7 @@
     "extraUrl": "",
     "typesetting": true,
     "ep_markdown": false,
-    "configMenuURL": "config/index.php",
+    "configMenuFilename": "index.php",
     "configMenuOverlayButton": true,
     "author": "Éditions Burn~Août",
     "description": "Padatrad permet de traduire collectivement des textes et de les éditer depuis un navigateur web.",

@@ -48,7 +48,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     writeJSON($padsFile, array_values($newPads)); // Convert associative array to indexed array
   }
 
+
+  $rename = false;
+
   if (isset($_POST['submit3'])) {
+    // Check if we have to move the config file
+    if($_POST['configMenuFilename'] != $config['configMenuFilename']) $rename = true;
+
     // Update JSON data with form inputs
     foreach ($_POST as $key => $value) {
         // Check if field exists in JSON data
@@ -64,8 +70,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     writeJSON($configFile, $config); // Convert associative array to indexed array
   }
 
-  // Redirect to prevent form resubmission
-  header("Location: ".$_SERVER['PHP_SELF']);
+  if($rename) {
+    rename(__FILE__, $_POST['configMenuFilename']);
+    header("Location: ".$_POST['configMenuFilename']);
+  } else {
+    // Redirect to prevent form resubmission
+    header("Location: ".$_SERVER['PHP_SELF']);
+  }
   exit;
 }
 ?>
@@ -126,7 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <label>ep_markdown activé sur vos Etherpad : <input type="checkbox" name="ep_markdown" <?=$checkEpMarkdown; ?>></label><br>
         <?php $checkEpConfigBtn = $config['configMenuOverlayButton']?"checked":""; ?>
         <label>Bouton vers le menu de configuration dans le menu latéral : <input type="checkbox" name="configMenuOverlayButton" <?=$checkEpConfigBtn; ?>></label><br>
-        <label>Lien vers le menu de configuration (renommez-le pour le cacher des utilisateurices) : <input type="text" name="configMenuURL" placeholder="config/index.php" value="<?php echo $config['configMenuURL']; ?>"></label><br>
+        <label>Lien vers le menu de configuration (renommez-le pour le cacher des utilisateurices) : <input type="text" name="configMenuFilename" placeholder="index.php" value="<?php echo $config['configMenuFilename']; ?>"></label><br>
         <h2>Médadonnées</h2>
         <label>Auteurices : <input type="text" name="author" value="<?php echo $config['author']; ?>"></label><br>
         <label>Description : <textarea name="description"><?php echo $config['description']; ?></textarea></label><br>

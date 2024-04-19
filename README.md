@@ -30,7 +30,7 @@ Si vous souhaitez utiliser ce menu de configuration en local, alors il vous faud
 
 Le texte contenu dans le champ `infoText` est affiché dans la fenêtre pop-up qui apparaît lorsqu'un·e utilisateurice clique sur le bouton `Infos` du menu latéral. Les champs `extraUrlLabel` et `extraUrl` permettent d'ajouter un bouton de votre choix dans le menu latéral.
 
-> **Attention :** Si vous souhaitez protéger votre configuration de possibles interventions extérieures, alors il vous sera nécessaire d'ajouter un mot de passe (par exemple avec des fichiers `.htaccess` et `.htpasswd`). Il est aussi possible plus simplement de renommer le fichier `index.php` avec un nom compliqué à trouver, le menu de configuration sera ensuite accessible comme suit : `https://example.com/chemin/vers/padatrad/config/nomcompliqueatrouver.php`. Pour continuer d'utiliser le bouton `Configuration`, il vous sera aussi nécessaire de mettre à jour le nom du fichier dans le menu de configuration.
+> **Astuce :** Si vous souhaitez protéger votre configuration de possibles interventions extérieures, alors il vous est possible de renommer le fichier `index.php` avec un nom compliqué à trouver, le menu de configuration sera ensuite accessible comme suit : `https://example.com/chemin/vers/padatrad/config/nomcompliqueatrouver.php`.
 
 ### Renseigner ses pads
 
@@ -164,7 +164,7 @@ If you wish to use this configuration menu locally, you'll need to run a PHP ser
 
 The text in the `infoText` field is displayed in the pop-up window that appears when a user clicks the `Info` button in the sidebar. The `extraUrlLabel` and `extraUrl` fields allow you to add a button of your choice to the sidebar.
 
-> **Warning:** If you want to protect your configuration from possible external interference, you'll need to add a password (for example, using `.htaccess` and `.htpasswd` files). Alternatively, you can simply rename the `index.php` file to a difficult-to-guess name, and then the configuration menu will be accessible as follows: `https://example.com/path/to/padatrad/config/difficulttoguessname.php`. In order to keep using the `Configuration` button, you have to update the name of the file in the configuration menu.
+> **Tip:** If you want to protect your configuration from possible external interference, you'll need to rename the `index.php` file to a difficult-to-guess name, and then the configuration menu will be accessible as follows: `https://example.com/path/to/padatrad/config/difficulttoguessname.php`.
 
 ### Providing information for your pads
 
