@@ -24,6 +24,7 @@ En manque d'idées sur où commencer ? Vous trouverez ci-dessous une liste de ch
 - [ ] Ajouter au formulaire de configuration la possibilité de renommer le fichier `index.php` plutôt que d'avoir à le faire côté serveur
 - [ ] Améliorer le drag-and-drop pour les pads dans le menu de configuration. Ajouter la possibilité d'assigner une position où inserer le pad dans un champ
 - [ ] Augmenter le parser de Markdown afin de supporter des front-matter, notamment pour assigner des classes à la section toute entière (ou alors les assigner depuis la configuration ?) 
+- [ ] Développer une extension d'Etherpad pour Padatrad (dans un premier temps, simplement changer le style de l'éditeur pour mettre en valeur les parties traduites)
 
 ## Cosmétique
 
