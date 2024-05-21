@@ -25,6 +25,9 @@ En manque d'idées sur où commencer ? Vous trouverez ci-dessous une liste de ch
 - [ ] Améliorer le drag-and-drop pour les pads dans le menu de configuration. Ajouter la possibilité d'assigner une position où inserer le pad dans un champ
 - [ ] Augmenter le parser de Markdown afin de supporter des front-matter, notamment pour assigner des classes à la section toute entière (ou alors les assigner depuis la configuration ?) 
 - [ ] Développer une extension d'Etherpad pour Padatrad (dans un premier temps, simplement changer le style de l'éditeur pour mettre en valeur les parties traduites)
+- [ ] Implémenter la [lecture seule](https://etherpad.org/doc/v1.9.1/#_getreadonlyidpadid) des pads dans Padatrad. Faire un mode lecture seule pour Padatrad.
+- [ ] Ajouter la lecture en lots des pads, comme dans Ethertoff ou Etherport.
+
 
 ## Cosmétique
 
