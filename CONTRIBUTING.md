@@ -27,6 +27,7 @@ En manque d'idées sur où commencer ? Vous trouverez ci-dessous une liste de ch
 - [ ] Développer une extension d'Etherpad pour Padatrad (dans un premier temps, simplement changer le style de l'éditeur pour mettre en valeur les parties traduites)
 - [ ] Implémenter la [lecture seule](https://etherpad.org/doc/v1.9.1/#_getreadonlyidpadid) des pads dans Padatrad. Faire un mode lecture seule pour Padatrad.
 - [ ] Ajouter la lecture en lots des pads, comme dans Ethertoff ou Etherport.
+- [ ] Ajouter la possibilité d'avoir une iframe sur le côté plutôt que forcément ouvrir Etherpad. Cette iframe pourrait avoir un lien bidirectionnel entre la représentation et l'éditeur... Y a pas mal de choses à faire, à partir de ce qui a été fait pour Propage.
 
 
 ## Cosmétique
