@@ -13,6 +13,7 @@ En manque d'idées sur où commencer ? Vous trouverez ci-dessous une liste de ch
 - [X] Intégrer les hooks
     - [X] regex-typo
     - [X] ragadjust
+- [ ] Ajouter un support pour HedgeDoc, qui supporte mieux le Markdown qu'ep_markdown.
 - [ ] Proposer une version avec le hook FacingSections
 - [ ] Diviser les `p` en `span` pour un gestion plus fine des chunks de traduction (voir `replace-translation.js`). Est-ce pertinent ?
 - [X] Associer un tooltip aux `.target` qui contient le texte source (augmenter `replace-translation.js`)
