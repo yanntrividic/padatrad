@@ -5,11 +5,42 @@
  */
 
 
+const FRS = ["fr", 'fr-fr', 'french', 'francais', 'fra', 'français']
+
+const config = await (await fetch('config/config.json')).json();
+
+var frLang = null
+var otherLang = null
+
+if(FRS.indexOf(config.sourceLanguage) >= 0) {
+    frLang = config.sourceLanguage
+    otherLang = config.targetLanguage
+}
+
+if(FRS.indexOf(config.targetLanguage) >= 0) {
+    frLang = config.targetLanguage
+    otherLang = config.sourceLanguage
+}
+
+console.log(frLang)
+
 export default function regexTypo(){
+    if(frLang == null) {
+        console.log("French is neither source or target language. No typesetting applied.")
+        return
+    }
     orthotypo(document.body);
     spaces(document.body);
     exposants();
     noHyphens();
+}
+
+function isFr(element) {
+    if(element == null) return false
+    if(typeof element === "string") return isFr(element.parentElement)
+    if(element.classList.contains(otherLang)) return false
+    if(element.classList.contains(frLang)) return true
+    return isFr(element.parentElement)
 }
 
 function orthotypo( element ){
@@ -34,7 +65,11 @@ function orthotypo( element ){
     var node;
     while (node = nodes.nextNode()) {
         for (var i = 0; i < array.length; i++) {
-            node.textContent = node.textContent.replace(array[i].reg, array[i].repl);
+            if(node.textContent) {
+                if (isFr(node.parentElement)) {
+                    node.textContent = node.textContent.replace(array[i].reg, array[i].repl);
+                }
+            }
         } 
     }
 
@@ -148,13 +183,16 @@ function spaces( element ){
         var code = node.parentElement.closest("code"); 
         // if not, apply replacements
         if(code == null){
-            for (var i = 0; i < array.length; i++) {
-                node.textContent = node.textContent.replace(array[i].reg, array[i].repl);
+            if(node.textContent) {
+                console.log(isFr(node.parentElement), node.textContent)
+                if (isFr(node.parentElement)) {
+                    for (var i = 0; i < array.length; i++) {
+                        node.textContent = node.textContent.replace(array[i].reg, array[i].repl);
+                    }
+                }
             }
         }
-        
     }
-
 }
 
 
@@ -187,8 +225,10 @@ function exposantsRegex(elem){
         },
     ]
 
-    for (var i = 0; i < array.length; i++) {    
-        elem = elem.replace(array[i].reg, array[i].repl);
+    for (var i = 0; i < array.length; i++) {
+        if (isFr(elem)) {
+            elem = elem.replace(array[i].reg, array[i].repl);
+        }
     }
     return elem;
     

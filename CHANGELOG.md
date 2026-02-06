@@ -1,3 +1,9 @@
+# 1.2
+
+### Corrections de bugs
+
+* L'extension `typesetting` concernant l'orthotypographie ne s'applique à présent que sur les éléments en langue française (soit les éléments donc la langue source ou cible est `fr`, `fr-fr`, `fra`, `francais`, `français` -- insensible à la casse). Réalisé pour répondre au besoins du projet de recherche [« Nouveaux habits du colportage »](https://lesnouveauxhabitsducolportage.be/) (Léonard Mabille, Alice Néron et Alexia de Visscher).
+
 # 1.1
 
 ### Améliorations notables

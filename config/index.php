@@ -132,7 +132,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <label>Label de l'URL additionnelle : <input type="text" name="extraUrlLabel" placeholder="Mon super lien" value="<?php echo $config['extraUrlLabel']; ?>"></label><br>
         <label>Lien de URL additionnelle : <input type="text" name="extraUrl" placeholder="https://monsuperlien.fr" value="<?php echo $config['extraUrl']; ?>"></label><br>
         <?php $checkTypesetting = $config['typesetting']?"checked":""; ?>
-        <label>Typesetting (extension) : <input type="checkbox" name="typesetting" <?=$checkTypesetting; ?>></label><br>
+        <label>French typesetting (extension) : <input type="checkbox" name="typesetting" <?=$checkTypesetting; ?>></label><br>
         <?php $checkEpMarkdown = $config['ep_markdown']?"checked":""; ?>
         <label>ep_markdown activé sur vos Etherpad : <input type="checkbox" name="ep_markdown" <?=$checkEpMarkdown; ?>></label><br>
         <?php $checkEpConfigBtn = $config['configMenuOverlayButton']?"checked":""; ?>
